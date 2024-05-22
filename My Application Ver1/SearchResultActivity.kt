@@ -26,31 +26,35 @@ class SearchResultActivity : AppCompatActivity() {
         val imageView5 = findViewById<ImageView>(R.id.imageView5)
         val textView5 = findViewById<TextView>(R.id.textView5)
 
+        val textViews = listOf(textView1, textView2, textView3, textView4, textView5)
+
         imageView1.setOnClickListener {
-            toggleTextViewVisibility(textView1)
+            toggleTextViewVisibility(textView1, textViews)
         }
 
         imageView2.setOnClickListener {
-            toggleTextViewVisibility(textView2)
+            toggleTextViewVisibility(textView2, textViews)
         }
 
         imageView3.setOnClickListener {
-            toggleTextViewVisibility(textView3)
+            toggleTextViewVisibility(textView3, textViews)
         }
 
         imageView4.setOnClickListener {
-            toggleTextViewVisibility(textView4)
+            toggleTextViewVisibility(textView4, textViews)
         }
 
         imageView5.setOnClickListener {
-            toggleTextViewVisibility(textView5)
+            toggleTextViewVisibility(textView5, textViews)
         }
     }
 
-    private fun toggleTextViewVisibility(textView: TextView) {
-        if (textView.visibility == View.VISIBLE) {
-            textView.visibility = View.GONE
-        } else {
+    private fun toggleTextViewVisibility(textView: TextView, allTextViews: List<TextView>) {
+        for (tv in allTextViews) {
+            tv.visibility = View.GONE
+        }
+
+        if (textView.visibility == View.GONE) {
             textView.visibility = View.VISIBLE
         }
     }
