@@ -51,11 +51,21 @@ class SearchResultActivity : AppCompatActivity() {
 
     private fun toggleTextViewVisibility(textView: TextView, allTextViews: List<TextView>) {
         for (tv in allTextViews) {
-            tv.visibility = View.GONE
+            if (tv.visibility == View.VISIBLE && tv != textView) {
+                tv.animate().alpha(0f).setDuration(300).withEndAction {
+                    tv.visibility = View.GONE
+                }
+            }
         }
 
         if (textView.visibility == View.GONE) {
+            textView.alpha = 0f
             textView.visibility = View.VISIBLE
+            textView.animate().alpha(1f).setDuration(300)
+        } else {
+            textView.animate().alpha(0f).setDuration(300).withEndAction {
+                textView.visibility = View.GONE
+            }
         }
     }
 }
