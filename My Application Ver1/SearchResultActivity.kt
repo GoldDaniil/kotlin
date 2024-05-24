@@ -1,7 +1,9 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,7 @@ class SearchResultActivity : AppCompatActivity() {
         val imageView1 = findViewById<ImageView>(R.id.imageView1)
         val overlayView1 = findViewById<View>(R.id.overlayView1)
         val textView1 = findViewById<TextView>(R.id.textView1)
+        val button1 = findViewById<Button>(R.id.button1)
 
         val imageView2 = findViewById<ImageView>(R.id.imageView2)
         val overlayView2 = findViewById<View>(R.id.overlayView2)
@@ -35,27 +38,32 @@ class SearchResultActivity : AppCompatActivity() {
         val overlayViews = listOf(overlayView1, overlayView2, overlayView3, overlayView4, overlayView5)
 
         imageView1.setOnClickListener {
-            toggleTextViewVisibility(textView1, overlayView1, textViews, overlayViews)
+            toggleTextViewVisibility(textView1, overlayView1, button1, textViews, overlayViews)
         }
 
         imageView2.setOnClickListener {
-            toggleTextViewVisibility(textView2, overlayView2, textViews, overlayViews)
+            toggleTextViewVisibility(textView2, overlayView2, null, textViews, overlayViews)
         }
 
         imageView3.setOnClickListener {
-            toggleTextViewVisibility(textView3, overlayView3, textViews, overlayViews)
+            toggleTextViewVisibility(textView3, overlayView3, null, textViews, overlayViews)
         }
 
         imageView4.setOnClickListener {
-            toggleTextViewVisibility(textView4, overlayView4, textViews, overlayViews)
+            toggleTextViewVisibility(textView4, overlayView4, null, textViews, overlayViews)
         }
 
         imageView5.setOnClickListener {
-            toggleTextViewVisibility(textView5, overlayView5, textViews, overlayViews)
+            toggleTextViewVisibility(textView5, overlayView5, null, textViews, overlayViews)
+        }
+
+        button1.setOnClickListener {
+            val intent = Intent(this, GreenBackgroundActivity::class.java)
+            startActivity(intent)
         }
     }
 
-    private fun toggleTextViewVisibility(textView: TextView, overlayView: View, allTextViews: List<TextView>, allOverlayViews: List<View>) {
+    private fun toggleTextViewVisibility(textView: TextView, overlayView: View, button: Button?, allTextViews: List<TextView>, allOverlayViews: List<View>) {
         for (i in allTextViews.indices) {
             if (allTextViews[i].visibility == View.VISIBLE && allTextViews[i] != textView) {
                 allTextViews[i].animate().alpha(0f).setDuration(300).withEndAction {
@@ -75,6 +83,8 @@ class SearchResultActivity : AppCompatActivity() {
             overlayView.alpha = 0f
             overlayView.visibility = View.VISIBLE
             overlayView.animate().alpha(1f).setDuration(300)
+
+            button?.visibility = View.VISIBLE
         } else {
             textView.animate().alpha(0f).setDuration(300).withEndAction {
                 textView.visibility = View.GONE
@@ -82,6 +92,8 @@ class SearchResultActivity : AppCompatActivity() {
             overlayView.animate().alpha(0f).setDuration(300).withEndAction {
                 overlayView.visibility = View.GONE
             }
+
+            button?.visibility = View.GONE
         }
     }
 }
