@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string-array name="grand_prix_array">
+        <item>Бахрейн</item>
+        <item>Саудовская Аравия</item>
+        <item>Австралия</item>
+        <item>Япония</item>
+        <item>Китай</item>
+        <item>Майами</item>
+        <item>Эмилии-Романьи</item>
+        <item>Монако</item>
+        <item>Канада</item>
+        <item>Испания</item>
+        <item>Австрия</item>
+        <item>Великобритания</item>
+        <item>Венгрия</item>
+        <item>Бельгия</item>
+        <item>Нидерланды</item>
+        <item>Италия</item>
+        <item>Азербайджан</item>
+        <item>Сингапур</item>
+        <item>США</item>
+        <item>Мексика</item>
+        <item>Бразилия</item>
+        <item>Лас-Вегас</item>
+        <item>Катар</item>
+        <item>Абу-Даби</item>
+    </string-array>
+</resources>
