@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="30dp"
+    android:gravity="center"> <!-- Центровка по горизонтали и вертикали -->
 
     <Spinner
         android:id="@+id/grandPrixSpinner"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/grand_prix_array" />
+        android:entries="@array/grand_prix_array"
+        android:layout_gravity="center_horizontal" /> <!-- Центровка по горизонтали -->
 
     <Button
         android:id="@+id/calculateButton"
@@ -17,14 +19,15 @@
         android:layout_height="wrap_content"
         android:text="Go"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp" /> <!-- Центровка по горизонтали -->
 
     <TextView
         android:id="@+id/resultTextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="18sp"
-        android:text="Time remaining:" />
+        android:textSize="20sp"
+        android:text="Time remaining:"
+        android:layout_gravity="center_horizontal" /> <!-- Центровка по горизонтали -->
 
 </LinearLayout>
