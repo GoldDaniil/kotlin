@@ -78,7 +78,7 @@ class GrandPrixCalculatorActivity : AppCompatActivity() {
             val weeks = diff / (1000 * 60 * 60 * 24 * 7)
             val months = weeks / 4
 
-            return "Времени осталось до гран при: $months месяцев, $weeks недель, $days дней, $hours часов, $minutes минут, $seconds секунд"
+            return "Времени осталось: $months месяцев, $weeks недель, $days дней, $hours часов, $minutes минут, $seconds секунд"
         }
 
         return "Ошибка расчета времени"
