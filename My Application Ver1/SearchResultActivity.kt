@@ -73,7 +73,7 @@ class SearchResultActivity : AppCompatActivity() {
         }
 
         button3.setOnClickListener {
-            val intent = Intent(this, GreenBackgroundActivity::class.java)
+            val intent = Intent(this, GrandPrixCalculatorActivity::class.java)
             startActivity(intent)
         }
 
@@ -88,14 +88,7 @@ class SearchResultActivity : AppCompatActivity() {
         }
     }
 
-    private fun toggleTextViewVisibility(
-        textView: TextView,
-        overlayView: View,
-        button: Button?,
-        allTextViews: List<TextView>,
-        allOverlayViews: List<View>,
-        allButtons: List<Button>
-    ) {
+    private fun toggleTextViewVisibility(textView: TextView, overlayView: View, button: Button?, allTextViews: List<TextView>, allOverlayViews: List<View>, allButtons: List<Button>) {
         for (i in allTextViews.indices) {
             if (allTextViews[i].visibility == View.VISIBLE && allTextViews[i] != textView) {
                 allTextViews[i].animate().alpha(0f).setDuration(300).withEndAction {
