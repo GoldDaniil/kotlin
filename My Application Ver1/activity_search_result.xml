@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="2.0"/>
+            app:layout_constraintWidth_percent="2.0" />
 
         <View
             android:id="@+id/overlayView1"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="@id/imageView1"
             app:layout_constraintBottom_toBottomOf="@id/imageView1"
             app:layout_constraintStart_toStartOf="@id/imageView1"
-            app:layout_constraintEnd_toEndOf="@id/imageView1"/>
+            app:layout_constraintEnd_toEndOf="@id/imageView1" />
 
         <TextView
             android:id="@+id/textView1"
@@ -44,7 +44,7 @@
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/imageView1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/button1"
@@ -52,10 +52,12 @@
             android:layout_height="wrap_content"
             android:text="Ссылка"
             android:visibility="gone"
+            android:background="@drawable/transparent_button_background"
+            android:textColor="@android:color/white"
             app:layout_constraintTop_toTopOf="@id/imageView1"
             app:layout_constraintBottom_toBottomOf="@id/imageView1"
             app:layout_constraintStart_toStartOf="@id/imageView1"
-            app:layout_constraintEnd_toEndOf="@id/imageView1"/>
+            app:layout_constraintEnd_toEndOf="@id/imageView1" />
 
         <ImageView
             android:id="@+id/imageView2"
