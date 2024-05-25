@@ -40,25 +40,26 @@ class SearchResultActivity : AppCompatActivity() {
 
         val textViews = listOf(textView1, textView2, textView3, textView4, textView5)
         val overlayViews = listOf(overlayView1, overlayView2, overlayView3, overlayView4, overlayView5)
+        val buttons = listOf(button1, button2, button3, button4, button5)
 
         imageView1.setOnClickListener {
-            toggleTextViewVisibility(textView1, overlayView1, button1, textViews, overlayViews)
+            toggleTextViewVisibility(textView1, overlayView1, button1, textViews, overlayViews, buttons)
         }
 
         imageView2.setOnClickListener {
-            toggleTextViewVisibility(textView2, overlayView2, button2, textViews, overlayViews)
+            toggleTextViewVisibility(textView2, overlayView2, button2, textViews, overlayViews, buttons)
         }
 
         imageView3.setOnClickListener {
-            toggleTextViewVisibility(textView3, overlayView3, button3, textViews, overlayViews)
+            toggleTextViewVisibility(textView3, overlayView3, button3, textViews, overlayViews, buttons)
         }
 
         imageView4.setOnClickListener {
-            toggleTextViewVisibility(textView4, overlayView4, button4, textViews, overlayViews)
+            toggleTextViewVisibility(textView4, overlayView4, button4, textViews, overlayViews, buttons)
         }
 
         imageView5.setOnClickListener {
-            toggleTextViewVisibility(textView5, overlayView5, button5, textViews, overlayViews)
+            toggleTextViewVisibility(textView5, overlayView5, button5, textViews, overlayViews, buttons)
         }
 
         button1.setOnClickListener {
@@ -87,7 +88,14 @@ class SearchResultActivity : AppCompatActivity() {
         }
     }
 
-    private fun toggleTextViewVisibility(textView: TextView, overlayView: View, button: Button?, allTextViews: List<TextView>, allOverlayViews: List<View>) {
+    private fun toggleTextViewVisibility(
+        textView: TextView,
+        overlayView: View,
+        button: Button?,
+        allTextViews: List<TextView>,
+        allOverlayViews: List<View>,
+        allButtons: List<Button>
+    ) {
         for (i in allTextViews.indices) {
             if (allTextViews[i].visibility == View.VISIBLE && allTextViews[i] != textView) {
                 allTextViews[i].animate().alpha(0f).setDuration(300).withEndAction {
@@ -96,6 +104,7 @@ class SearchResultActivity : AppCompatActivity() {
                 allOverlayViews[i].animate().alpha(0f).setDuration(300).withEndAction {
                     allOverlayViews[i].visibility = View.GONE
                 }
+                allButtons[i].visibility = View.GONE
             }
         }
 
