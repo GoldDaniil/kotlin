@@ -29,3 +29,4 @@ class FullScreenVideoActivity : AppCompatActivity() {
         }
     }
 }
+ 
