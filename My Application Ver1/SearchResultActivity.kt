@@ -68,7 +68,7 @@ class SearchResultActivity : AppCompatActivity() {
         }
 
         button2.setOnClickListener {
-            val intent = Intent(this, GreenBackgroundActivity::class.java)
+            val intent = Intent(this, YouTubeVideosActivity::class.java)
             startActivity(intent)
         }
 
@@ -78,7 +78,7 @@ class SearchResultActivity : AppCompatActivity() {
         }
 
         button4.setOnClickListener {
-            val intent = Intent(this, GreenBackgroundActivity::class.java)
+            val intent = Intent(this, PhotoGalleryActivity::class.java)
             startActivity(intent)
         }
 
