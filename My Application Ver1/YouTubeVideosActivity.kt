@@ -36,10 +36,9 @@ class YouTubeVideosActivity : AppCompatActivity() {
                     "Испания" -> R.raw.video_grand_prix_italy
                     "Италия" -> R.raw.video_grand_prix_italy
                     "Япония" -> R.raw.video_grand_prix_italy
-                    "Эмилии-Романьи" -> R.raw.video_grand_prix_emiliiromanii
                     "Австрия" -> R.raw.video_grand_prix_italy
                     "Великобритания" -> R.raw.video_grand_prix_emiliiromanii
-                    else -> R.raw.gradvideopast
+                    else -> R.raw.video_grand_prix_italy
 
                 }
                 watchButton.setOnClickListener {
