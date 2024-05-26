@@ -4,14 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30dp"
-    android:gravity="center"> <!-- Центровка по горизонтали и вертикали -->
+    android:gravity="center">
 
     <Spinner
         android:id="@+id/grandPrixSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:entries="@array/grand_prix_array"
-        android:layout_gravity="center_horizontal" /> <!-- Центровка по горизонтали -->
+        android:layout_gravity="center_horizontal"
+        android:minWidth="200dp"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:spinnerMode="dropdown"/>
 
     <Button
         android:id="@+id/calculateButton"
@@ -19,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Go"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp" /> <!-- Центровка по горизонтали -->
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:id="@+id/resultTextView"
@@ -28,6 +32,6 @@
         android:layout_marginTop="16dp"
         android:textSize="20sp"
         android:text="Time remaining:"
-        android:layout_gravity="center_horizontal" /> <!-- Центровка по горизонтали -->
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
