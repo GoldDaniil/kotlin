@@ -1,22 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/countryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выберите страну"
+        android:textSize="24sp" />
 
     <Spinner
         android:id="@+id/countrySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/watchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/countrySpinner"
-        android:layout_centerHorizontal="true"
-        android:text="Watch" />
+        android:text="Watch"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp" />
 
-</RelativeLayout>
+</LinearLayout>
