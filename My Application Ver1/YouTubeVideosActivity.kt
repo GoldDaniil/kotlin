@@ -18,7 +18,7 @@ class YouTubeVideosActivity : AppCompatActivity() {
         val countrySpinner = findViewById<Spinner>(R.id.countrySpinner)
         val watchButton = findViewById<Button>(R.id.watchButton)
 
-        val countries = arrayOf("Бахрейн", "Австралия", "Италия")
+        val countries = arrayOf("Бахрейн", "Австралия", "Монако", "Саудовская Аравия", "Азербайджан", "Испания", "Италия", "Япония", "Эмилии-Романьи", "Австрия", "Великобритания")
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, countries)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -30,7 +30,15 @@ class YouTubeVideosActivity : AppCompatActivity() {
                 val videoId = when (selectedCountry) {
                     "Бахрейн" -> R.raw.video_grand_prix_bahrain
                     "Австралия" -> R.raw.video_grand_prix_australia
+                    "Монако" -> R.raw.video_grand_prix_monako
+                    "Саудовская Аравия" -> R.raw.video_grand_prix_saudia_aravia
+                    "Азербайджан" -> R.raw.video_grand_prix_azer
+                    "Испания" -> R.raw.video_grand_prix_italy
                     "Италия" -> R.raw.video_grand_prix_italy
+                    "Япония" -> R.raw.video_grand_prix_italy
+                    "Эмилии-Романьи" -> R.raw.video_grand_prix_emiliiromanii
+                    "Австрия" -> R.raw.video_grand_prix_italy
+                    "Великобритания" -> R.raw.video_grand_prix_emiliiromanii
                     else -> R.raw.gradvideopast
 
                 }
