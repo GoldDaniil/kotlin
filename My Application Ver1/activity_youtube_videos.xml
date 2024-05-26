@@ -8,7 +8,7 @@
         android:id="@+id/countryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Выберите страну"
+        android:text="Гран При \n2024 года \n\nвыберите страну:"
         android:textSize="24sp" />
 
     <Spinner
