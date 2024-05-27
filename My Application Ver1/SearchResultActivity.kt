@@ -63,7 +63,7 @@ class SearchResultActivity : AppCompatActivity() {
         }
 
         button1.setOnClickListener {
-            val intent = Intent(this, GreenBackgroundActivity::class.java)
+            val intent = Intent(this, NewsActivity::class.java)
             startActivity(intent)
         }
 
