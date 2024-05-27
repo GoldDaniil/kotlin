@@ -14,15 +14,30 @@
             android:layout_width="match_parent"
             android:layout_height="500dp"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@android:color/white"/>
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerSecond"
             android:layout_width="match_parent"
             android:layout_height="400dp"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@android:color/white"/>
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerThird"
             android:layout_width="match_parent"
             android:layout_height="600dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@android:color/white"/>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerBottom"
