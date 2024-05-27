@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.widget.LinearLayout
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +13,22 @@ import androidx.viewpager.widget.ViewPager
 
 class PhotoGalleryActivity : AppCompatActivity() {
 
+    private val imagesTop = arrayOf(
+        R.drawable.photo1, R.drawable.photo2, R.drawable.photo3, R.drawable.photo4,
+        R.drawable.photo5, R.drawable.photo6, R.drawable.photo7, R.drawable.photo8
+    )
+    private val imagesSecond = arrayOf(
+        R.drawable.tech10, R.drawable.tech1, R.drawable.tech2, R.drawable.tech3, R.drawable.tech4,
+        R.drawable.tech5, R.drawable.tech6, R.drawable.tech7, R.drawable.tech8, R.drawable.tech9
+    )
+    private val imagesThird = arrayOf(
+        R.drawable.photo9, R.drawable.photo10, R.drawable.photo11, R.drawable.photo12
+    )
+    private val imagesBottom = arrayOf(
+        R.drawable.crash1, R.drawable.crash2, R.drawable.crash3, R.drawable.crash4, R.drawable.crash5,
+        R.drawable.crash6, R.drawable.crash7, R.drawable.crash8
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_gallery)
@@ -21,26 +38,10 @@ class PhotoGalleryActivity : AppCompatActivity() {
         val viewPagerThird = findViewById<ViewPager>(R.id.viewPagerThird)
         val viewPagerBottom = findViewById<ViewPager>(R.id.viewPagerBottom)
 
-        val imagesTop = arrayOf(
-            R.drawable.photo1, R.drawable.photo2, R.drawable.photo3, R.drawable.photo4,
-            R.drawable.photo5, R.drawable.photo6, R.drawable.photo7, R.drawable.photo8
-        )
-        val imagesSecond = arrayOf(
-            R.drawable.tech10, R.drawable.tech1, R.drawable.tech2, R.drawable.tech3, R.drawable.tech4,
-            R.drawable.tech5, R.drawable.tech6, R.drawable.tech7, R.drawable.tech8, R.drawable.tech9
-        )
-        val imagesThird = arrayOf(
-            R.drawable.photo9, R.drawable.photo10, R.drawable.photo11, R.drawable.photo12
-        )
-        val imagesBottom = arrayOf(
-            R.drawable.crash1, R.drawable.crash2, R.drawable.crash3, R.drawable.crash4, R.drawable.crash5,
-            R.drawable.crash6, R.drawable.crash7, R.drawable.crash8
-        )
-
-        val adapterTop = PhotoPagerAdapter(this, imagesTop)
-        val adapterSecond = PhotoPagerAdapter(this, imagesSecond)
-        val adapterThird = PhotoPagerAdapter(this, imagesThird)
-        val adapterBottom = PhotoPagerAdapter(this, imagesBottom)
+        val adapterTop = PhotoPagerAdapter(this, imagesTop, viewPagerTop)
+        val adapterSecond = PhotoPagerAdapter(this, imagesSecond, viewPagerSecond)
+        val adapterThird = PhotoPagerAdapter(this, imagesThird, viewPagerThird)
+        val adapterBottom = PhotoPagerAdapter(this, imagesBottom, viewPagerBottom)
 
         viewPagerTop.adapter = adapterTop
         viewPagerSecond.adapter = adapterSecond
@@ -48,7 +49,11 @@ class PhotoGalleryActivity : AppCompatActivity() {
         viewPagerBottom.adapter = adapterBottom
     }
 
-    private inner class PhotoPagerAdapter(private val context: Context, private val images: Array<Int>) : PagerAdapter() {
+    private inner class PhotoPagerAdapter(
+        private val context: Context,
+        private val images: Array<Int>,
+        private val viewPager: ViewPager
+    ) : PagerAdapter() {
 
         override fun getCount(): Int {
             return images.size
@@ -58,7 +63,15 @@ class PhotoGalleryActivity : AppCompatActivity() {
             val inflater = LayoutInflater.from(context)
             val view = inflater.inflate(R.layout.item_photo, container, false)
             val imageView = view.findViewById<ImageView>(R.id.imageView)
+            val overlayView = view.findViewById<View>(R.id.overlayView)
+            val textLayout = view.findViewById<LinearLayout>(R.id.textLayout)
+
             imageView.setImageResource(images[position])
+
+            imageView.setOnClickListener {
+                toggleOverlayViewVisibility(overlayView, textLayout)
+            }
+
             container.addView(view)
             return view
         }
@@ -69,6 +82,16 @@ class PhotoGalleryActivity : AppCompatActivity() {
 
         override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
             container.removeView(`object` as View)
+        }
+    }
+
+    private fun toggleOverlayViewVisibility(overlayView: View, textLayout: LinearLayout) {
+        if (overlayView.visibility == View.GONE) {
+            overlayView.visibility = View.VISIBLE
+            textLayout.visibility = View.VISIBLE
+        } else {
+            overlayView.visibility = View.GONE
+            textLayout.visibility = View.GONE
         }
     }
 }
