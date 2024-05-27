@@ -186,7 +186,7 @@ class NewsActivity : AppCompatActivity() {
         )
 
         val newsImages = listOf(
-            R.drawable.news11,
+            R.drawable.news1,
             R.drawable.news2,
             R.drawable.news3,
             R.drawable.news4,
