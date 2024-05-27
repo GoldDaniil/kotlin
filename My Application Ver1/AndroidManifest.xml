@@ -21,5 +21,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchResultActivity" />
+        <activity android:name=".GreenBackgroundActivity" />
+        <activity android:name=".GrandPrixCalculatorActivity" />
+        <activity android:name=".YouTubeVideosActivity" />
+        <activity android:name=".FullScreenVideoActivity" />
+        <activity android:name=".PhotoGalleryActivity" />
+        <activity android:name=".NewsActivity" />
+
     </application>
 </manifest>
