@@ -22,16 +22,19 @@ class PhotoGalleryActivity : AppCompatActivity() {
         val viewPagerBottom = findViewById<ViewPager>(R.id.viewPagerBottom)
 
         val imagesTop = arrayOf(
-            R.drawable.photo1, R.drawable.photo2, R.drawable.photo3, R.drawable.photo4
+            R.drawable.photo1, R.drawable.photo2, R.drawable.photo3, R.drawable.photo4,
+            R.drawable.photo5, R.drawable.photo6, R.drawable.photo7, R.drawable.photo8
         )
         val imagesSecond = arrayOf(
-            R.drawable.photo5, R.drawable.photo6, R.drawable.photo7, R.drawable.photo8
+            R.drawable.tech10, R.drawable.tech1, R.drawable.tech2, R.drawable.tech3, R.drawable.tech4,
+            R.drawable.tech5, R.drawable.tech6, R.drawable.tech7, R.drawable.tech8, R.drawable.tech9
         )
         val imagesThird = arrayOf(
             R.drawable.photo9, R.drawable.photo10, R.drawable.photo11, R.drawable.photo12
         )
         val imagesBottom = arrayOf(
-            R.drawable.photo13, R.drawable.photo14, R.drawable.photo15, R.drawable.photo16, R.drawable.photo17
+            R.drawable.crash1, R.drawable.crash2, R.drawable.crash3, R.drawable.crash4, R.drawable.crash5,
+            R.drawable.crash6, R.drawable.crash7, R.drawable.crash8
         )
 
         val adapterTop = PhotoPagerAdapter(this, imagesTop)
