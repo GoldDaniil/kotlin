@@ -2,20 +2,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/background_image_granprix">
 
-    <TextView
-        android:id="@+id/countryTextView"
+<FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Гран При \n2024 года \n\nвыберите страну:"
-        android:textSize="24sp" />
+        android:background="@drawable/brown_rounded_corner_background"
+        android:padding="16dp"
+        android:layout_margin="16dp">
+
+        <TextView
+            android:id="@+id/countryTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Гран При \n2024 года \n\nвыберите страну:"
+            android:textSize="21sp"
+            android:textColor="@android:color/white"/>
+    </FrameLayout>
 
     <Spinner
         android:id="@+id/countrySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/watchButton"
