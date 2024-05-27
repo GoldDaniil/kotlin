@@ -5,6 +5,15 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+    <ImageView
+        android:id="@+id/newsImageView"
+        android:layout_width="370dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="8dp" />
+
+    <!-- android:layout_width="370dp"
+        android:layout_height="200dp" - ширина и высота картинок над блоком новостей-->
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="match_parent"
@@ -14,6 +23,18 @@
         android:padding="8dp"
         android:background="#80000000"
         android:layout_marginBottom="1dp"/>
+
+    <TextView
+        android:id="@+id/detailsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        android:padding="8dp"
+        android:background="#80000000"/>
+</LinearLayout>
+
 
 <!--    <TextView-->
 <!--        android:id="@+id/titleTextView"-->
@@ -35,14 +56,3 @@
 <!--        android:textColor="@android:color/white"-->
 <!--        android:visibility="gone"-->
 <!--        android:padding="8dp"/>-->
-
-    <TextView
-        android:id="@+id/detailsTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/white"
-        android:visibility="gone"
-        android:padding="8dp"
-        android:background="#80000000"/>
-</LinearLayout>
