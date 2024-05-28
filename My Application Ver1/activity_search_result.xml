@@ -8,22 +8,25 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="450dp"
+            android:layout_width="0dp"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
             android:src="@drawable/image1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="2.0" />
+            app:layout_constraintWidth_percent="1.0"
+            android:layout_marginBottom="16dp" />
 
         <View
             android:id="@+id/overlayView1"
-            android:layout_width="450dp"
+            android:layout_width="0dp"
             android:layout_height="300dp"
             android:background="#80000000"
             android:visibility="gone"
@@ -71,25 +74,27 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="450dp"
+            android:layout_width="0dp"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
             android:src="@drawable/image2"
             app:layout_constraintTop_toBottomOf="@id/imageView1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="2.0"/>
+            app:layout_constraintWidth_percent="1.0"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
 
         <View
             android:id="@+id/overlayView2"
-            android:layout_width="450dp"
+            android:layout_width="0dp"
             android:layout_height="300dp"
             android:background="#80000000"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="@id/imageView2"
             app:layout_constraintBottom_toBottomOf="@id/imageView2"
             app:layout_constraintStart_toStartOf="@id/imageView2"
-            app:layout_constraintEnd_toEndOf="@id/imageView2"/>
+            app:layout_constraintEnd_toEndOf="@id/imageView2" />
 
         <TextView
             android:id="@+id/textView2"
@@ -99,7 +104,7 @@
             app:layout_constraintTop_toTopOf="@id/imageView2"
             app:layout_constraintBottom_toBottomOf="@id/imageView2"
             app:layout_constraintStart_toStartOf="@id/imageView2"
-            app:layout_constraintEnd_toEndOf="@id/imageView2"/>
+            app:layout_constraintEnd_toEndOf="@id/imageView2" />
 
         <Button
             android:id="@+id/button2"
@@ -115,9 +120,10 @@
             app:layout_constraintStart_toStartOf="@id/imageView2"
             app:layout_constraintEnd_toEndOf="@id/imageView2" />
 
+        <!-- Separator 2 -->
         <View
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="2dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/imageView2"
             app:layout_constraintStart_toStartOf="parent"
@@ -125,25 +131,27 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="450dp"
+            android:layout_width="0dp"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
             android:src="@drawable/image4"
             app:layout_constraintTop_toBottomOf="@id/imageView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="2.0"/>
+            app:layout_constraintWidth_percent="1.0"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
 
         <View
             android:id="@+id/overlayView3"
-            android:layout_width="450dp"
+            android:layout_width="0dp"
             android:layout_height="300dp"
             android:background="#80000000"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="@id/imageView3"
             app:layout_constraintBottom_toBottomOf="@id/imageView3"
             app:layout_constraintStart_toStartOf="@id/imageView3"
-            app:layout_constraintEnd_toEndOf="@id/imageView3"/>
+            app:layout_constraintEnd_toEndOf="@id/imageView3" />
 
         <TextView
             android:id="@+id/textView3"
@@ -153,7 +161,7 @@
             app:layout_constraintTop_toTopOf="@id/imageView3"
             app:layout_constraintBottom_toBottomOf="@id/imageView3"
             app:layout_constraintStart_toStartOf="@id/imageView3"
-            app:layout_constraintEnd_toEndOf="@id/imageView3"/>
+            app:layout_constraintEnd_toEndOf="@id/imageView3" />
 
         <Button
             android:id="@+id/button3"
@@ -169,9 +177,10 @@
             app:layout_constraintStart_toStartOf="@id/imageView3"
             app:layout_constraintEnd_toEndOf="@id/imageView3" />
 
+        <!-- Separator 3 -->
         <View
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="2dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/imageView3"
             app:layout_constraintStart_toStartOf="parent"
@@ -179,25 +188,27 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="450dp"
+            android:layout_width="0dp"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
             android:src="@drawable/image5"
             app:layout_constraintTop_toBottomOf="@id/imageView3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="2.0"/>
+            app:layout_constraintWidth_percent="1.0"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
 
         <View
             android:id="@+id/overlayView4"
-            android:layout_width="450dp"
+            android:layout_width="0dp"
             android:layout_height="300dp"
             android:background="#80000000"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="@id/imageView4"
             app:layout_constraintBottom_toBottomOf="@id/imageView4"
             app:layout_constraintStart_toStartOf="@id/imageView4"
-            app:layout_constraintEnd_toEndOf="@id/imageView4"/>
+            app:layout_constraintEnd_toEndOf="@id/imageView4" />
 
         <TextView
             android:id="@+id/textView4"
@@ -207,7 +218,7 @@
             app:layout_constraintTop_toTopOf="@id/imageView4"
             app:layout_constraintBottom_toBottomOf="@id/imageView4"
             app:layout_constraintStart_toStartOf="@id/imageView4"
-            app:layout_constraintEnd_toEndOf="@id/imageView4"/>
+            app:layout_constraintEnd_toEndOf="@id/imageView4" />
 
         <Button
             android:id="@+id/button4"
@@ -223,9 +234,10 @@
             app:layout_constraintStart_toStartOf="@id/imageView4"
             app:layout_constraintEnd_toEndOf="@id/imageView4" />
 
+        <!-- Separator 4 -->
         <View
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="2dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/imageView4"
             app:layout_constraintStart_toStartOf="parent"
@@ -233,25 +245,27 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="450dp"
+            android:layout_width="0dp"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
             android:src="@drawable/image3"
             app:layout_constraintTop_toBottomOf="@id/imageView4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="2.0"/>
+            app:layout_constraintWidth_percent="1.0"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
 
         <View
             android:id="@+id/overlayView5"
-            android:layout_width="450dp"
+            android:layout_width="0dp"
             android:layout_height="300dp"
             android:background="#80000000"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="@id/imageView5"
             app:layout_constraintBottom_toBottomOf="@id/imageView5"
             app:layout_constraintStart_toStartOf="@id/imageView5"
-            app:layout_constraintEnd_toEndOf="@id/imageView5"/>
+            app:layout_constraintEnd_toEndOf="@id/imageView5" />
 
         <TextView
             android:id="@+id/textView5"
@@ -261,7 +275,7 @@
             app:layout_constraintTop_toTopOf="@id/imageView5"
             app:layout_constraintBottom_toBottomOf="@id/imageView5"
             app:layout_constraintStart_toStartOf="@id/imageView5"
-            app:layout_constraintEnd_toEndOf="@id/imageView5"/>
+            app:layout_constraintEnd_toEndOf="@id/imageView5" />
 
         <Button
             android:id="@+id/button5"
@@ -277,9 +291,10 @@
             app:layout_constraintStart_toStartOf="@id/imageView5"
             app:layout_constraintEnd_toEndOf="@id/imageView5" />
 
+        <!-- Separator 5 -->
         <View
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="2dp"
             android:background="@android:color/holo_red_dark"
             app:layout_constraintTop_toBottomOf="@id/imageView5"
             app:layout_constraintStart_toStartOf="parent"
@@ -287,3 +302,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+
