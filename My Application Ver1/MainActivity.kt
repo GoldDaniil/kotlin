@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         mainLayout.setOnClickListener {
             if (isDarkMode) {
                 mainLayout.setBackgroundColor(Color.WHITE)
-                textView.setTextColor(Color.BLACK)
+                textView.setTextColor(Color.RED)
                 additionalTextView.visibility = View.GONE
             } else {
                 mainLayout.setBackgroundColor(Color.BLACK)
