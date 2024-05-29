@@ -38,10 +38,10 @@ class PhotoGalleryActivity : AppCompatActivity() {
         val viewPagerThird = findViewById<ViewPager>(R.id.viewPagerThird)
         val viewPagerBottom = findViewById<ViewPager>(R.id.viewPagerBottom)
 
-        val adapterTop = PhotoPagerAdapter(this, imagesTop, viewPagerTop)
-        val adapterSecond = PhotoPagerAdapter(this, imagesSecond, viewPagerSecond)
-        val adapterThird = PhotoPagerAdapter(this, imagesThird, viewPagerThird)
-        val adapterBottom = PhotoPagerAdapter(this, imagesBottom, viewPagerBottom)
+        val adapterTop = PhotoPagerAdapter(this, imagesTop)
+        val adapterSecond = PhotoPagerAdapter(this, imagesSecond)
+        val adapterThird = PhotoPagerAdapter(this, imagesThird)
+        val adapterBottom = PhotoPagerAdapter(this, imagesBottom)
 
         viewPagerTop.adapter = adapterTop
         viewPagerSecond.adapter = adapterSecond
@@ -51,8 +51,7 @@ class PhotoGalleryActivity : AppCompatActivity() {
 
     private inner class PhotoPagerAdapter(
         private val context: Context,
-        private val images: Array<Int>,
-        private val viewPager: ViewPager
+        private val images: Array<Int>
     ) : PagerAdapter() {
 
         override fun getCount(): Int {
@@ -68,8 +67,10 @@ class PhotoGalleryActivity : AppCompatActivity() {
 
             imageView.setImageResource(images[position])
 
-            imageView.setOnClickListener {
-                toggleOverlayViewVisibility(overlayView, textLayout)
+            if (position == 0) { 
+                imageView.setOnClickListener {
+                    toggleOverlayViewVisibility(overlayView, textLayout)
+                }
             }
 
             container.addView(view)
