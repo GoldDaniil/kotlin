@@ -9,4 +9,9 @@
     <color name="red">#FF0000</color>
     <color name="MediumBlue">#0000CD</color>
     <color name="DarkRed">#8B0000</color>
+    <color name="Gray">#808080</color>
+    <color name="Grey">#808080</color>
+    <color name="DimGray">#696969</color>
+    <color name="RosyBrown">#BC8F8F</color>
+    <color name="BurlyWood">#DEB887</color>
 </resources>
