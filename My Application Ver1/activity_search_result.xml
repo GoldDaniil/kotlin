@@ -69,15 +69,6 @@
             app:layout_constraintStart_toStartOf="@id/imageView1"
             app:layout_constraintEnd_toEndOf="@id/imageView1" />
 
-        <!-- Separator 1 -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintTop_toBottomOf="@id/imageView1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="0dp"
@@ -126,15 +117,6 @@
             app:layout_constraintBottom_toBottomOf="@id/imageView2"
             app:layout_constraintStart_toStartOf="@id/imageView2"
             app:layout_constraintEnd_toEndOf="@id/imageView2" />
-
-        <!-- Separator 2 -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintTop_toBottomOf="@id/imageView2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -186,15 +168,6 @@
             app:layout_constraintStart_toStartOf="@id/imageView3"
             app:layout_constraintEnd_toEndOf="@id/imageView3" />
 
-        <!-- Separator 3 -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintTop_toBottomOf="@id/imageView3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="0dp"
@@ -244,15 +217,6 @@
             app:layout_constraintBottom_toBottomOf="@id/imageView4"
             app:layout_constraintStart_toStartOf="@id/imageView4"
             app:layout_constraintEnd_toEndOf="@id/imageView4" />
-
-        <!-- Separator 4 -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintTop_toBottomOf="@id/imageView4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -305,4 +269,3 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
-
