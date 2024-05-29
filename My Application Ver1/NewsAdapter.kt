@@ -44,7 +44,6 @@ class NewsAdapter(
                 notifyDataSetChanged()
             }
 
-            // Установка соответствующего изображения
             newsImageView.setImageResource(imageRes)
         }
     }
