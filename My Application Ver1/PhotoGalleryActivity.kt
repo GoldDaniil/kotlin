@@ -67,7 +67,10 @@ class PhotoGalleryActivity : AppCompatActivity() {
 
             imageView.setImageResource(images[position])
 
-            if (position == 0) { 
+            if (position == 0) {
+                overlayView.visibility = View.VISIBLE
+                textLayout.visibility = View.VISIBLE
+
                 imageView.setOnClickListener {
                     toggleOverlayViewVisibility(overlayView, textLayout)
                 }
