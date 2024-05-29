@@ -21,4 +21,18 @@
     <color name="Grey35">#59808080</color> <!-- 35% прозрачности -->
     <color name="Grey20">#33808080</color> <!-- 20% прозрачности -->
 
+    <color name="red_40">#66FF0000</color> <!-- 40% прозрачности -->
+    <color name="red_30">#4DFF0000</color> <!-- 30% прозрачности -->
+    <color name="red_45">#73FF0000</color> <!-- 45% прозрачности -->
+    <color name="red_25">#40FF0000</color> <!-- 25% прозрачности -->
+    <color name="red_35">#59FF0000</color> <!-- 35% прозрачности -->
+    <color name="red_20">#33FF0000</color> <!-- 20% прозрачности -->
+
+    <color name="white_40">#66FFFFFF</color> <!-- 40% прозрачности -->
+    <color name="white_30">#4DFFFFFF</color> <!-- 30% прозрачности -->
+    <color name="white_45">#73FFFFFF</color> <!-- 45% прозрачности -->
+    <color name="white_25">#40FFFFFF</color> <!-- 25% прозрачности -->
+    <color name="white_35">#59FFFFFF</color> <!-- 35% прозрачности -->
+    <color name="white_20">#33FFFFFF</color> <!-- 20% прозрачности -->
+
 </resources>
