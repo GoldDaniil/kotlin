@@ -14,4 +14,11 @@
     <color name="DimGray">#696969</color>
     <color name="RosyBrown">#BC8F8F</color>
     <color name="BurlyWood">#DEB887</color>
+    <color name="Grey40">#66808080</color> <!-- 40% прозрачности -->
+    <color name="Grey30">#4D808080</color> <!-- 30% прозрачности -->
+    <color name="Grey45">#73808080</color> <!-- 45% прозрачности -->
+    <color name="Grey25">#40808080</color> <!-- 25% прозрачности -->
+    <color name="Grey35">#59808080</color> <!-- 35% прозрачности -->
+    <color name="Grey20">#33808080</color> <!-- 20% прозрачности -->
+
 </resources>
