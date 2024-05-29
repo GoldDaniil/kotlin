@@ -19,12 +19,6 @@
             android:layout_height="8dp"
             android:background="@android:color/white"/>
 
-        <View
-            android:id="@+id/overlayViewTop"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:background="#80000000" />
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerSecond"
             android:layout_width="match_parent"
@@ -34,13 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="8dp"
             android:background="@android:color/white"/>
-
-        <!-- Dark overlay for the first image in the second row -->
-        <View
-            android:id="@+id/overlayViewSecond"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:background="#80000000" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerThird"
@@ -52,22 +39,10 @@
             android:layout_height="8dp"
             android:background="@android:color/white"/>
 
-        <View
-            android:id="@+id/overlayViewThird"
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:background="#80000000" />
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerBottom"
             android:layout_width="match_parent"
             android:layout_height="500dp"/>
-
-        <View
-            android:id="@+id/overlayViewBottom"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:background="#80000000" />
 
     </LinearLayout>
 </ScrollView>
