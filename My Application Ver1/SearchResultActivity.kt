@@ -86,6 +86,26 @@ class SearchResultActivity : AppCompatActivity() {
             val intent = Intent(this, GreenBackgroundActivity::class.java)
             startActivity(intent)
         }
+
+        findViewById<TextView>(R.id.nav_a).setOnClickListener {
+            // s'a' click
+        }
+
+        findViewById<TextView>(R.id.nav_b).setOnClickListener {
+            // s'b' click
+        }
+
+        findViewById<TextView>(R.id.nav_c).setOnClickListener {
+            // s'c' click
+        }
+
+        findViewById<TextView>(R.id.nav_d).setOnClickListener {
+            // s 'd' click
+        }
+
+        findViewById<TextView>(R.id.nav_e).setOnClickListener {
+            // s 'e' click
+        }
     }
 
     private fun toggleTextViewVisibility(textView: TextView, overlayView: View, button: Button?, allTextViews: List<TextView>, allOverlayViews: List<View>, allButtons: List<Button>) {
