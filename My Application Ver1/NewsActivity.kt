@@ -219,7 +219,7 @@ class NewsActivity : AppCompatActivity() {
         }
 
         navNews.setOnClickListener {
-            
+
         }
 
         navRace.setOnClickListener {
@@ -240,7 +240,7 @@ class NewsActivity : AppCompatActivity() {
     }
 
     fun openNewsActivity(view: View) {
-        
+
     }
 
     fun openYouTubeVideosActivity(view: View) {
