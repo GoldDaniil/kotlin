@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
 
 class SearchResultActivity : AppCompatActivity() {
 
-    private val delayMillis: Long = 60 // 60/1000 секунды
+    private val delayMillis: Long = 80 // 60/1000 секунды
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
