@@ -49,8 +49,9 @@ class GrandPrixCalculatorActivity : AppCompatActivity() {
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.grand_prix_array,
-            R.layout.spinner_item
+            R.layout.spinner_item_white_text
         )
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         grandPrixSpinner.adapter = adapter
 
