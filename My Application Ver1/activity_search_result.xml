@@ -294,8 +294,8 @@
 
             <ImageView
                 android:id="@+id/icon_a"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/iconshome"/>
 
             <TextView
@@ -318,8 +318,8 @@
 
             <ImageView
                 android:id="@+id/icon_b"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/iconsnews"/>
 
             <TextView
@@ -342,8 +342,8 @@
 
             <ImageView
                 android:id="@+id/icon_c"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/iconsflag"/>
 
             <TextView
@@ -366,9 +366,9 @@
 
             <ImageView
                 android:id="@+id/icon_d"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/iconshome"/>
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/iconshistory"/>
 
             <TextView
                 android:id="@+id/nav_d"
@@ -390,9 +390,9 @@
 
             <ImageView
                 android:id="@+id/icon_e"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/iconshome"/>
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/iconsmore"/>
 
             <TextView
                 android:id="@+id/nav_e"
