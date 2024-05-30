@@ -1,16 +1,22 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.os.Handler
+import android.os.Looper
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class NewsActivity : AppCompatActivity() {
+
+    private val delayMillis: Long = 65 // 60/1000 секунды
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -201,5 +207,70 @@ class NewsActivity : AppCompatActivity() {
 
         val adapter = NewsAdapter(newsList, newsDetails, newsImages)
         recyclerView.adapter = adapter
+
+        val navHome = findViewById<LinearLayout>(R.id.nav_home)
+        val navNews = findViewById<LinearLayout>(R.id.nav_news)
+        val navRace = findViewById<LinearLayout>(R.id.nav_race)
+        val navHistory = findViewById<LinearLayout>(R.id.nav_history)
+        val navMore = findViewById<LinearLayout>(R.id.nav_more)
+
+        navHome.setOnClickListener {
+            changeColorAndNavigateWithDelay(navHome, SearchResultActivity::class.java)
+        }
+
+        navNews.setOnClickListener {
+            
+        }
+
+        navRace.setOnClickListener {
+            changeColorAndNavigateWithDelay(navRace, YouTubeVideosActivity::class.java)
+        }
+
+        navHistory.setOnClickListener {
+            changeColorAndNavigateWithDelay(navHistory, GreenBackgroundActivity::class.java)
+        }
+
+        navMore.setOnClickListener {
+            changeColorAndNavigateWithDelay(navMore, GreenBackgroundActivity::class.java)
+        }
+    }
+
+    fun openSearchResultActivity(view: View) {
+        startActivity(Intent(this, SearchResultActivity::class.java))
+    }
+
+    fun openNewsActivity(view: View) {
+        
+    }
+
+    fun openYouTubeVideosActivity(view: View) {
+        startActivity(Intent(this, YouTubeVideosActivity::class.java))
+    }
+
+    fun openGreenBackgroundActivity(view: View) {
+        startActivity(Intent(this, GreenBackgroundActivity::class.java))
+    }
+
+    private fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
+        val textViewMap = mapOf(
+            R.id.nav_home to R.id.nav_a,
+            R.id.nav_news to R.id.nav_b,
+            R.id.nav_race to R.id.nav_c,
+            R.id.nav_history to R.id.nav_d,
+            R.id.nav_more to R.id.nav_e
+        )
+
+        for ((parentId, textViewId) in textViewMap) {
+            findViewById<TextView>(textViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
+        }
+
+        val selectedTextViewId = textViewMap[layout.id]
+        findViewById<TextView>(selectedTextViewId!!)?.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, activityClass))
+
+            findViewById<TextView>(selectedTextViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
+        }, delayMillis)
     }
 }
