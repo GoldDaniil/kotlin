@@ -20,7 +20,8 @@ class YouTubeVideosActivity : AppCompatActivity() {
 
         val countries = arrayOf("Бахрейн", "Австралия", "Монако", "Саудовская Аравия", "Азербайджан", "Испания", "Италия", "Япония", "Эмилии-Романьи", "Австрия", "Великобритания")
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, countries)
+
+        val adapter = ArrayAdapter(this, R.layout.spinner_item, countries)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         countrySpinner.adapter = adapter
 
