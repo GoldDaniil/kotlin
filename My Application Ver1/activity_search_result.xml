@@ -286,13 +286,13 @@
         android:paddingTop="2dp">
 
         <LinearLayout
+            android:id="@+id/nav_home"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginTop="2dp"
-            android:onClick="openSearchResultActivity">
+            android:layout_marginTop="2dp">
 
             <ImageView
                 android:id="@+id/icon_a"
@@ -311,13 +311,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/nav_news"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginTop="2dp"
-            android:onClick="openNewsActivity">
+            android:layout_marginTop="2dp">
 
             <ImageView
                 android:id="@+id/icon_b"
@@ -336,13 +336,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/nav_race"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginTop="2dp"
-            android:onClick="openYouTubeVideosActivity">
+            android:layout_marginTop="2dp">
 
             <ImageView
                 android:id="@+id/icon_c"
@@ -361,13 +361,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/nav_history"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginTop="2dp"
-            android:onClick="openGreenBackgroundActivity">
+            android:layout_marginTop="2dp">
 
             <ImageView
                 android:id="@+id/icon_d"
@@ -386,13 +386,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/nav_more"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginTop="2dp"
-            android:onClick="openGreenBackgroundActivity">
+            android:layout_marginTop="2dp">
 
             <ImageView
                 android:id="@+id/icon_e"
