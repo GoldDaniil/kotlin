@@ -87,24 +87,45 @@ class SearchResultActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Navigation bar setup
         findViewById<TextView>(R.id.nav_a).setOnClickListener {
-            // s'a' click
+            // Handle navigation item 'a' click
         }
 
         findViewById<TextView>(R.id.nav_b).setOnClickListener {
-            // s'b' click
+            // Handle navigation item 'b' click
         }
 
         findViewById<TextView>(R.id.nav_c).setOnClickListener {
-            // s'c' click
+            // Handle navigation item 'c' click
         }
 
         findViewById<TextView>(R.id.nav_d).setOnClickListener {
-            // s 'd' click
+            // Handle navigation item 'd' click
         }
 
         findViewById<TextView>(R.id.nav_e).setOnClickListener {
-            // s 'e' click
+            // Handle navigation item 'e' click
+        }
+
+        findViewById<ImageView>(R.id.icon_a).setOnClickListener {
+            // Handle icon 'a' click
+        }
+
+        findViewById<ImageView>(R.id.icon_b).setOnClickListener {
+            // Handle icon 'b' click
+        }
+
+        findViewById<ImageView>(R.id.icon_c).setOnClickListener {
+            // Handle icon 'c' click
+        }
+
+        findViewById<ImageView>(R.id.icon_d).setOnClickListener {
+            // Handle icon 'd' click
+        }
+
+        findViewById<ImageView>(R.id.icon_e).setOnClickListener {
+            // Handle icon 'e' click
         }
     }
 
