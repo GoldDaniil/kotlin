@@ -284,55 +284,126 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <TextView
-            android:id="@+id/nav_a"
+        <!-- Navigation Item A -->
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="a"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <TextView
-            android:id="@+id/nav_b"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="b"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
+            <ImageView
+                android:id="@+id/icon_a"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/iconshome"/>
 
-        <TextView
-            android:id="@+id/nav_c"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="c"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/nav_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="a"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/nav_d"
+        <!-- Navigation Item B -->
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="d"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <TextView
-            android:id="@+id/nav_e"
+            <ImageView
+                android:id="@+id/icon_b"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/iconsnews"/>
+
+            <TextView
+                android:id="@+id/nav_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="b"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <!-- Navigation Item C -->
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="e"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/icon_c"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/iconsflag"/>
+
+            <TextView
+                android:id="@+id/nav_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="c"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <!-- Navigation Item D -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/icon_d"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/iconshome"/>
+
+            <TextView
+                android:id="@+id/nav_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="d"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <!-- Navigation Item E -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/icon_e"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/iconshome"/>
+
+            <TextView
+                android:id="@+id/nav_e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="e"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
