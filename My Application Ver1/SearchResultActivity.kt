@@ -86,47 +86,22 @@ class SearchResultActivity : AppCompatActivity() {
             val intent = Intent(this, GreenBackgroundActivity::class.java)
             startActivity(intent)
         }
+    }
 
-        // Navigation bar setup
-        findViewById<TextView>(R.id.nav_a).setOnClickListener {
-            // Handle navigation item 'a' click
-        }
+    fun openSearchResultActivity(view: View) {
+        startActivity(Intent(this, SearchResultActivity::class.java))
+    }
 
-        findViewById<TextView>(R.id.nav_b).setOnClickListener {
-            // Handle navigation item 'b' click
-        }
+    fun openNewsActivity(view: View) {
+        startActivity(Intent(this, NewsActivity::class.java))
+    }
 
-        findViewById<TextView>(R.id.nav_c).setOnClickListener {
-            // Handle navigation item 'c' click
-        }
+    fun openYouTubeVideosActivity(view: View) {
+        startActivity(Intent(this, YouTubeVideosActivity::class.java))
+    }
 
-        findViewById<TextView>(R.id.nav_d).setOnClickListener {
-            // Handle navigation item 'd' click
-        }
-
-        findViewById<TextView>(R.id.nav_e).setOnClickListener {
-            // Handle navigation item 'e' click
-        }
-
-        findViewById<ImageView>(R.id.icon_a).setOnClickListener {
-            // Handle icon 'a' click
-        }
-
-        findViewById<ImageView>(R.id.icon_b).setOnClickListener {
-            // Handle icon 'b' click
-        }
-
-        findViewById<ImageView>(R.id.icon_c).setOnClickListener {
-            // Handle icon 'c' click
-        }
-
-        findViewById<ImageView>(R.id.icon_d).setOnClickListener {
-            // Handle icon 'd' click
-        }
-
-        findViewById<ImageView>(R.id.icon_e).setOnClickListener {
-            // Handle icon 'e' click
-        }
+    fun openGreenBackgroundActivity(view: View) {
+        startActivity(Intent(this, GreenBackgroundActivity::class.java))
     }
 
     private fun toggleTextViewVisibility(textView: TextView, overlayView: View, button: Button?, allTextViews: List<TextView>, allOverlayViews: List<View>, allButtons: List<Button>) {
