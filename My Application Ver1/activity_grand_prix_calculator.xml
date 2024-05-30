@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30dp"
-    android:gravity="center">
+    android:gravity="top"
+    android:background="@drawable/background_image_calculator">
 
     <Spinner
         android:id="@+id/grandPrixSpinner"
@@ -21,18 +22,20 @@
         android:id="@+id/calculateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go"
+        android:text="Сount up"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:textSize="19sp"/>
 
     <TextView
         android:id="@+id/resultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="20sp"
+        android:textSize="21sp"
         android:text="Time remaining:"
+        android:textColor="@color/white"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
- 
