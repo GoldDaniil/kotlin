@@ -1,0 +1,198 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/photo3"
+    android:padding="16dp"
+    android:gravity="top">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="История Формулы 1"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:paddingBottom="16dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Формула-1 (F1) — чемпионат мира по автогонкам на машинах с открытыми колёсами, который проводится с 1950 года. Формула-1 считается высшей категорией автогонок по шкале FIA."
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:paddingBottom="8dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/photo2"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="История Формулы-1 началась в Европе после Второй мировой войны. Первый чемпионат был проведен в 1950 году, и с тех пор Формула-1 стала одним из самых престижных видов спорта в мире."
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:paddingBottom="8dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/photo2"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="16dp"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:background="@android:color/black"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="2dp"
+        android:layout_gravity="bottom">
+
+        <LinearLayout
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/icon_a"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/iconshome"/>
+
+            <TextView
+                android:id="@+id/nav_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="home"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_news"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/icon_b"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/iconsnews"/>
+
+            <TextView
+                android:id="@+id/nav_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="news"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_race"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/icon_c"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/iconsflag"/>
+
+            <TextView
+                android:id="@+id/nav_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="race"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_history"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/icon_d"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/iconshistory"/>
+
+            <TextView
+                android:id="@+id/nav_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="history"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_more"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/icon_e"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/iconsmore"/>
+
+            <TextView
+                android:id="@+id/nav_e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="more"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
