@@ -1,14 +1,22 @@
 package com.example.myapplication
 
+import android.os.Handler
+import android.os.Looper
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+
 
 class SearchResultActivity : AppCompatActivity() {
+
+    private val delayMillis: Long = 60 // 60/1000 секунды
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
@@ -41,6 +49,33 @@ class SearchResultActivity : AppCompatActivity() {
         val textViews = listOf(textView1, textView2, textView3, textView4, textView5)
         val overlayViews = listOf(overlayView1, overlayView2, overlayView3, overlayView4, overlayView5)
         val buttons = listOf(button1, button2, button3, button4, button5)
+
+        val navHome = findViewById<LinearLayout>(R.id.nav_home)
+        val navNews = findViewById<LinearLayout>(R.id.nav_news)
+        val navRace = findViewById<LinearLayout>(R.id.nav_race)
+        val navHistory = findViewById<LinearLayout>(R.id.nav_history)
+        val navMore = findViewById<LinearLayout>(R.id.nav_more)
+
+        navHome.setOnClickListener {
+            changeColorAndNavigateWithDelay(navHome, SearchResultActivity::class.java)
+        }
+
+        navNews.setOnClickListener {
+            changeColorAndNavigateWithDelay(navNews, NewsActivity::class.java)
+        }
+
+        navRace.setOnClickListener {
+            changeColorAndNavigateWithDelay(navRace, YouTubeVideosActivity::class.java)
+        }
+
+        navHistory.setOnClickListener {
+            changeColorAndNavigateWithDelay(navHistory, GreenBackgroundActivity::class.java)
+        }
+
+        navMore.setOnClickListener {
+            changeColorAndNavigateWithDelay(navMore, GreenBackgroundActivity::class.java)
+        }
+
 
         imageView1.setOnClickListener {
             toggleTextViewVisibility(textView1, overlayView1, button1, textViews, overlayViews, buttons)
@@ -137,5 +172,28 @@ class SearchResultActivity : AppCompatActivity() {
 
             button?.visibility = View.GONE
         }
+    }
+
+    fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
+        val textViewMap = mapOf(
+            R.id.nav_home to R.id.nav_a,
+            R.id.nav_news to R.id.nav_b,
+            R.id.nav_race to R.id.nav_c,
+            R.id.nav_history to R.id.nav_d,
+            R.id.nav_more to R.id.nav_e
+        )
+
+        for ((parentId, textViewId) in textViewMap) {
+            findViewById<TextView>(textViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
+        }
+
+        val selectedTextViewId = textViewMap[layout.id]
+        findViewById<TextView>(selectedTextViewId!!)?.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, activityClass))
+
+            findViewById<TextView>(selectedTextViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
+        }, delayMillis)
     }
 }
