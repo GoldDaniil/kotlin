@@ -6,31 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:background="#000000"
     tools:context=".HistoryActivity">
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="История формулы 1"
         android:textSize="24sp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
         android:alpha="0" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
+        android:background="#FFFFFF"
         android:fillViewport="true">
 
         <LinearLayout
             android:id="@+id/articlesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:padding="16dp" />
     </ScrollView>
 </LinearLayout>
 
