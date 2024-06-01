@@ -219,7 +219,7 @@ class NewsActivity : AppCompatActivity() {
         }
 
         navNews.setOnClickListener {
-
+            changeColorAndNavigateWithDelay(navNews, NewsActivity::class.java)
         }
 
         navRace.setOnClickListener {
@@ -227,7 +227,7 @@ class NewsActivity : AppCompatActivity() {
         }
 
         navHistory.setOnClickListener {
-            changeColorAndNavigateWithDelay(navHistory, GreenBackgroundActivity::class.java)
+            changeColorAndNavigateWithDelay(navHistory, HistoryActivity::class.java)
         }
 
         navMore.setOnClickListener {
