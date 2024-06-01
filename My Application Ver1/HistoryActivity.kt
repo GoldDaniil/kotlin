@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.graphics.Typeface
 import android.view.View
 import android.content.Context
+import android.widget.ScrollView
 
 data class Article(val title: String, val description: String, val imageResId: Int)
 
@@ -21,9 +22,9 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history)
 
         val tvTitle: TextView = findViewById(R.id.tvTitle)
+        val scrollView: ScrollView = findViewById(R.id.scrollView)
         val articlesContainer: LinearLayout = findViewById(R.id.articlesContainer)
 
-        // Анимация появления заголовка
         tvTitle.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
             override fun onPreDraw(): Boolean {
                 tvTitle.viewTreeObserver.removeOnPreDrawListener(this)
@@ -36,11 +37,9 @@ class HistoryActivity : AppCompatActivity() {
             }
         })
 
-        // Добавление статей в контейнер
         val articles = listOf(
             Article("Article 1", "Description 1", R.drawable.image1),
             Article("Article 2", "Description 2", R.drawable.image2)
-            // добавьте больше статей здесь
         )
 
         for (article in articles) {
