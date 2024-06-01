@@ -66,6 +66,7 @@ class YouTubeVideosActivity : AppCompatActivity() {
         val navHistory = findViewById<LinearLayout>(R.id.nav_history)
         val navMore = findViewById<LinearLayout>(R.id.nav_more)
 
+        // Установим обработчики событий для каждого элемента
         navHome.setOnClickListener {
             changeColorAndNavigateWithDelay(navHome, SearchResultActivity::class.java)
         }
@@ -75,11 +76,11 @@ class YouTubeVideosActivity : AppCompatActivity() {
         }
 
         navRace.setOnClickListener {
-            
+            changeColorAndNavigateWithDelay(navRace, YouTubeVideosActivity::class.java)
         }
 
         navHistory.setOnClickListener {
-            changeColorAndNavigateWithDelay(navHistory, GreenBackgroundActivity::class.java)
+            changeColorAndNavigateWithDelay(navHistory, HistoryActivity::class.java)
         }
 
         navMore.setOnClickListener {
@@ -87,7 +88,7 @@ class YouTubeVideosActivity : AppCompatActivity() {
         }
 
         watchButton.setOnClickListener {
-            
+            // Ваш код для обработки нажатия на кнопку остается здесь
         }
     }
 
