@@ -12,6 +12,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
+        android:padding="22dp"
         android:gravity="top">
 
         <Spinner
