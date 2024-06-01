@@ -3,39 +3,184 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="30dp"
     android:gravity="top"
     android:background="@drawable/background_image_calculator">
 
-    <Spinner
-        android:id="@+id/grandPrixSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/grand_prix_array"
-        android:layout_gravity="center_horizontal"
-        android:minWidth="200dp"
-        android:minHeight="48dp"
-        android:padding="8dp"
-        android:spinnerMode="dropdown"/>
+    <!-- Основной контент наверху экрана -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="top">
 
-    <Button
-        android:id="@+id/calculateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Сount up"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/white"
-        android:textSize="19sp"/>
+        <Spinner
+            android:id="@+id/grandPrixSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/grand_prix_array"
+            android:minWidth="200dp"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:spinnerMode="dropdown"
+            android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/resultTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="21sp"
-        android:text="Time remaining:"
-        android:textColor="@color/white"
-        android:layout_gravity="center_horizontal" />
+        <Button
+            android:id="@+id/calculateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Count up"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/resultTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="21sp"
+            android:text="Time remaining:"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <!-- Панель навигации внизу экрана -->
+    <LinearLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:background="@android:color/black"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="2dp">
+
+        <LinearLayout
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/icon_a"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/iconshome"/>
+
+            <TextView
+                android:id="@+id/nav_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="home"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_news"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/icon_b"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/iconsnews"/>
+
+            <TextView
+                android:id="@+id/nav_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="news"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_race"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/icon_c"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/iconsflag"/>
+
+            <TextView
+                android:id="@+id/nav_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="race"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_history"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/icon_d"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/iconshistory"/>
+
+            <TextView
+                android:id="@+id/nav_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="history"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_more"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/icon_e"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/iconsmore"/>
+
+            <TextView
+                android:id="@+id/nav_e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="more"
+                android:textColor="@android:color/white"
+                android:textSize="19sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
