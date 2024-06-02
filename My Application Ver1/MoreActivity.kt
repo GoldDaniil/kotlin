@@ -47,6 +47,7 @@ class MoreActivity : AppCompatActivity() {
         val linkSettings = findViewById<TextView>(R.id.link_settings)
         val linkSocialWall = findViewById<TextView>(R.id.link_social_wall)
         val linkPhoto = findViewById<TextView>(R.id.link_photo)
+        val linkAuthors = findViewById<TextView>(R.id.link_authors)
 
         linkCalculator.setOnClickListener {
             startActivity(Intent(this, GrandPrixCalculatorActivity::class.java))
@@ -64,10 +65,16 @@ class MoreActivity : AppCompatActivity() {
             startActivity(Intent(this, PhotoGalleryActivity::class.java))
         }
 
-        applyAnimation(linkCalculator, 250)
-        applyAnimation(linkSettings, 350)
-        applyAnimation(linkSocialWall, 450)
-        applyAnimation(linkPhoto, 550)
+        linkAuthors.setOnClickListener {
+            startActivity(Intent(this, GreenBackgroundActivity::class.java))
+        }
+
+        applyAnimation(linkCalculator, 200)
+        applyAnimation(linkSettings, 300)
+        applyAnimation(linkSocialWall, 400)
+        applyAnimation(linkPhoto, 500)
+        applyAnimation(linkAuthors, 600)
+
     }
 
     private fun applyAnimation(view: View, delay: Long) {
