@@ -42,8 +42,14 @@ class HistoryActivity : AppCompatActivity() {
 
         val articles = listOf(
             Article("Article 1", "Description 1", R.drawable.image1),
-            Article("Article 2", "Description 2", R.drawable.image2)
-            // добавьте больше статей здесь
+            Article("Article 2", "Description 2", R.drawable.image2),
+                    Article("Article 2", "Description 2", R.drawable.image2),
+            Article("Article 2", "Description 2", R.drawable.image2),
+            Article("Article 2", "Description 2", R.drawable.image2),
+            Article("Article 2", "Description 2", R.drawable.image2),
+            Article("Article 2", "Description 2", R.drawable.image2),
+            Article("Article 2", "Description 2", R.drawable.image2),
+            // больше статей здесь
         )
 
         for (article in articles) {
@@ -74,7 +80,7 @@ class HistoryActivity : AppCompatActivity() {
         }
 
         navMore.setOnClickListener {
-            changeColorAndNavigateWithDelay(navMore, GreenBackgroundActivity::class.java)
+            changeColorAndNavigateWithDelay(navMore, MoreActivity::class.java)
         }
     }
 
