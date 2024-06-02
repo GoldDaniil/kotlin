@@ -84,11 +84,11 @@ class YouTubeVideosActivity : AppCompatActivity() {
         }
 
         navMore.setOnClickListener {
-            changeColorAndNavigateWithDelay(navMore, GreenBackgroundActivity::class.java)
+            changeColorAndNavigateWithDelay(navMore, MoreActivity::class.java)
         }
 
         watchButton.setOnClickListener {
-            // Ваш код для обработки нажатия на кнопку остается здесь
+            // 
         }
     }
 
