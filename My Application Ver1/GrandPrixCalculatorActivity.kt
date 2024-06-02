@@ -98,7 +98,7 @@ class GrandPrixCalculatorActivity : AppCompatActivity() {
         }
 
         navMore.setOnClickListener {
-            changeColorAndNavigateWithDelay(navMore, GreenBackgroundActivity::class.java)
+            changeColorAndNavigateWithDelay(navMore, MoreActivity::class.java)
         }
     }
 
