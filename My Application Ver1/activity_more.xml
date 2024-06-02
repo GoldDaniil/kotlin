@@ -1,67 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@android:color/white"
     tools:context=".MoreActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/navigation_bar"
-        android:fillViewport="true">
+        android:layout_above="@id/navigation_bar"
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <TextView
+                android:id="@+id/link_calculator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CALCULATOR"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:padding="8dp"
-                android:drawableStart="@drawable/image1"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/colorPrimary" />
+                android:textColor="@android:color/holo_blue_dark"
+                android:padding="16dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
 
             <TextView
+                android:id="@+id/link_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SETTINGS"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:padding="8dp"
-                android:drawableStart="@drawable/image1"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/colorPrimary" />
+                android:textColor="@android:color/holo_blue_dark"
+                android:padding="16dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
 
             <TextView
+                android:id="@+id/link_social_wall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SOCIAL WALL"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:padding="8dp"
-                android:drawableStart="@drawable/image1"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/colorPrimary" />
+                android:textColor="@android:color/holo_blue_dark"
+                android:padding="16dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
 
             <TextView
+                android:id="@+id/link_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PHOTO"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:padding="8dp"
-                android:drawableStart="@drawable/image1"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/colorPrimary" />
+                android:textColor="@android:color/holo_blue_dark"
+                android:padding="16dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
         </LinearLayout>
     </ScrollView>
 
