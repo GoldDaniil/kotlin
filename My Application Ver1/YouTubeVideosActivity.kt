@@ -66,7 +66,6 @@ class YouTubeVideosActivity : AppCompatActivity() {
         val navHistory = findViewById<LinearLayout>(R.id.nav_history)
         val navMore = findViewById<LinearLayout>(R.id.nav_more)
 
-        // Установим обработчики событий для каждого элемента
         navHome.setOnClickListener {
             changeColorAndNavigateWithDelay(navHome, SearchResultActivity::class.java)
         }
