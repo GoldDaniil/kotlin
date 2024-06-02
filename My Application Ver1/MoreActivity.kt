@@ -64,10 +64,10 @@ class MoreActivity : AppCompatActivity() {
             startActivity(Intent(this, PhotoGalleryActivity::class.java))
         }
 
-        applyAnimation(linkCalculator, 150)
-        applyAnimation(linkSettings, 250)
-        applyAnimation(linkSocialWall, 350)
-        applyAnimation(linkPhoto, 450)
+        applyAnimation(linkCalculator, 250)
+        applyAnimation(linkSettings, 350)
+        applyAnimation(linkSocialWall, 450)
+        applyAnimation(linkPhoto, 550)
     }
 
     private fun applyAnimation(view: View, delay: Long) {
