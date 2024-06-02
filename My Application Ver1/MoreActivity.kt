@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.view.animation.DecelerateInterpolator
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +17,6 @@ class MoreActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_more)
 
-        // Панель навигации
         val navHome = findViewById<LinearLayout>(R.id.nav_home)
         val navNews = findViewById<LinearLayout>(R.id.nav_news)
         val navRace = findViewById<LinearLayout>(R.id.nav_race)
@@ -43,41 +43,43 @@ class MoreActivity : AppCompatActivity() {
             changeColorAndNavigateWithDelay(navMore, MoreActivity::class.java)
         }
 
-        findViewById<TextView>(R.id.link_calculator).setOnClickListener {
+        val linkCalculator = findViewById<TextView>(R.id.link_calculator)
+        val linkSettings = findViewById<TextView>(R.id.link_settings)
+        val linkSocialWall = findViewById<TextView>(R.id.link_social_wall)
+        val linkPhoto = findViewById<TextView>(R.id.link_photo)
+
+        linkCalculator.setOnClickListener {
             startActivity(Intent(this, GrandPrixCalculatorActivity::class.java))
         }
 
-        findViewById<TextView>(R.id.link_settings).setOnClickListener {
+        linkSettings.setOnClickListener {
             startActivity(Intent(this, GreenBackgroundActivity::class.java))
         }
 
-        findViewById<TextView>(R.id.link_social_wall).setOnClickListener {
+        linkSocialWall.setOnClickListener {
             startActivity(Intent(this, GreenBackgroundActivity::class.java))
         }
 
-        findViewById<TextView>(R.id.link_photo).setOnClickListener {
+        linkPhoto.setOnClickListener {
             startActivity(Intent(this, PhotoGalleryActivity::class.java))
         }
 
-        fun openSearchResultActivity(view: View) {
-            startActivity(Intent(this, SearchResultActivity::class.java))
-        }
+        applyAnimation(linkCalculator, 150)
+        applyAnimation(linkSettings, 250)
+        applyAnimation(linkSocialWall, 350)
+        applyAnimation(linkPhoto, 450)
+    }
 
-        fun openNewsActivity(view: View) {
-            startActivity(Intent(this, NewsActivity::class.java))
-        }
-
-        fun openYouTubeVideosActivity(view: View) {
-            startActivity(Intent(this, YouTubeVideosActivity::class.java))
-        }
-
-        fun openGreenBackgroundActivity(view: View) {
-            startActivity(Intent(this, HistoryActivity::class.java))
-        }
-
-        fun openMoreActivity(view: View) {
-            startActivity(Intent(this, MoreActivity::class.java))
-        }
+    private fun applyAnimation(view: View, delay: Long) {
+        view.alpha = 0f
+        view.translationY = 50f
+        view.animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setInterpolator(DecelerateInterpolator())
+            .setStartDelay(delay)
+            .setDuration(500)
+            .start()
     }
 
     private fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
