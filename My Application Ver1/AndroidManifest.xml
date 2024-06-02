@@ -27,6 +27,8 @@
         <activity android:name=".FullScreenVideoActivity" />
         <activity android:name=".PhotoGalleryActivity" />
         <activity android:name=".NewsActivity" />
-
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".MoreActivity" />
+        <activity android:name=".AuthorsActivity" />
     </application>
 </manifest>
