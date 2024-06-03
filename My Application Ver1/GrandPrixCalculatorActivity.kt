@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.ImageView
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -53,6 +54,8 @@ class GrandPrixCalculatorActivity : AppCompatActivity() {
         val grandPrixSpinner = findViewById<Spinner>(R.id.grandPrixSpinner)
         val calculateButton = findViewById<Button>(R.id.calculateButton)
         val resultTextView = findViewById<TextView>(R.id.resultTextView)
+        val showResultsButton = findViewById<Button>(R.id.showResultsButton)
+        val resultsImageView = findViewById<ImageView>(R.id.resultsImageView)
 
         val adapter = ArrayAdapter.createFromResource(
             this,
@@ -70,9 +73,20 @@ class GrandPrixCalculatorActivity : AppCompatActivity() {
             if (grandPrixDate != null) {
                 val timeRemaining = calculateTimeRemaining(grandPrixDate)
                 resultTextView.text = timeRemaining
+
+                if (timeRemaining.contains("Гран при уже прошел")) {
+                    showResultsButton.visibility = View.VISIBLE
+                } else {
+                    showResultsButton.visibility = View.GONE
+                    resultsImageView.visibility = View.GONE
+                }
             } else {
                 resultTextView.text = "Выбран неверный Гран-при"
             }
+        }
+
+        showResultsButton.setOnClickListener {
+            resultsImageView.visibility = View.VISIBLE
         }
 
         val navHome = findViewById<LinearLayout>(R.id.nav_home)
