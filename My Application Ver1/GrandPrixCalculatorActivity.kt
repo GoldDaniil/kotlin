@@ -1,16 +1,18 @@
 package com.example.myapplication
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
-import android.widget.ImageView
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import java.text.SimpleDateFormat
@@ -45,7 +47,35 @@ class GrandPrixCalculatorActivity : AppCompatActivity() {
         "Абу-Даби" to "2024-12-08 16:00:00",
     )
 
+    private val grandPrixImages = mapOf(
+        "Бахрейн" to R.drawable.results_bahrain,
+        "Саудовская Аравия" to R.drawable.results_saudi_arabia,
+        "Австралия" to R.drawable.results_australia,
+        "Япония" to R.drawable.results_japan,
+        "Китай" to R.drawable.results_china,
+        "Майами" to R.drawable.results_miami,
+        "Эмилии-Романьи" to R.drawable.photo2,
+        "Монако" to R.drawable.photo3,
+        "Канада" to R.drawable.photo4,
+        "Испания" to R.drawable.photo5,
+        "Австрия" to R.drawable.photo6,
+        "Великобритания" to R.drawable.photo7,
+        "Венгрия" to R.drawable.photo8,
+        "Бельгия" to R.drawable.photo9,
+        "Нидерланды" to R.drawable.photo10,
+        "Италия" to R.drawable.photo11,
+        "Азербайджан" to R.drawable.photo12,
+        "Сингапур" to R.drawable.photo13,
+        "США" to R.drawable.photo14,
+        "Мексика" to R.drawable.photo15,
+        "Бразилия" to R.drawable.photo16,
+        "Лас-Вегас" to R.drawable.photo17,
+        "Катар" to R.drawable.news5,
+        "Абу-Даби" to R.drawable.news6
+    )
+
     private val delayMillis: Long = 65 // 60/1000 секунды
+    private var selectedGrandPrix: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +85,6 @@ class GrandPrixCalculatorActivity : AppCompatActivity() {
         val calculateButton = findViewById<Button>(R.id.calculateButton)
         val resultTextView = findViewById<TextView>(R.id.resultTextView)
         val showResultsButton = findViewById<Button>(R.id.showResultsButton)
-        val resultsImageView = findViewById<ImageView>(R.id.resultsImageView)
 
         val adapter = ArrayAdapter.createFromResource(
             this,
@@ -67,7 +96,7 @@ class GrandPrixCalculatorActivity : AppCompatActivity() {
         grandPrixSpinner.adapter = adapter
 
         calculateButton.setOnClickListener {
-            val selectedGrandPrix = grandPrixSpinner.selectedItem.toString()
+            selectedGrandPrix = grandPrixSpinner.selectedItem.toString()
             val grandPrixDate = grandPrixDates[selectedGrandPrix]
 
             if (grandPrixDate != null) {
@@ -78,15 +107,17 @@ class GrandPrixCalculatorActivity : AppCompatActivity() {
                     showResultsButton.visibility = View.VISIBLE
                 } else {
                     showResultsButton.visibility = View.GONE
-                    resultsImageView.visibility = View.GONE
                 }
             } else {
                 resultTextView.text = "Выбран неверный Гран-при"
+                showResultsButton.visibility = View.GONE
             }
         }
 
         showResultsButton.setOnClickListener {
-            resultsImageView.visibility = View.VISIBLE
+            selectedGrandPrix?.let { grandPrix ->
+                showResultsDialog(grandPrix)
+            }
         }
 
         val navHome = findViewById<LinearLayout>(R.id.nav_home)
@@ -137,6 +168,28 @@ class GrandPrixCalculatorActivity : AppCompatActivity() {
         }
 
         return "ошибка расчета времени"
+    }
+
+    private fun showResultsDialog(grandPrix: String) {
+        val dialog = Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_results, null)
+
+        val resultsImageView = dialogView.findViewById<ImageView>(R.id.resultsImageView)
+        val resultsImageResId = grandPrixImages[grandPrix]
+
+        if (resultsImageResId != null) {
+            resultsImageView.setImageResource(resultsImageResId)
+        } else {
+            resultsImageView.setImageResource(R.drawable.wedevelopers1)
+        }
+
+        dialog.setContentView(dialogView)
+
+        dialogView.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
