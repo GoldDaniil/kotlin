@@ -6,7 +6,6 @@
     android:gravity="top"
     android:background="@drawable/background_image_calculator">
 
-    <!-- Основной контент наверху экрана -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -46,9 +45,29 @@
             android:textColor="@color/white"
             android:gravity="center"
             android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:id="@+id/showResultsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Узнать результаты"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/resultsImageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/results_image_monako"
+            android:visibility="gone"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="16dp"/>
     </LinearLayout>
 
-    <!-- Панель навигации внизу экрана -->
     <LinearLayout
         android:id="@+id/navigation_bar"
         android:layout_width="match_parent"
