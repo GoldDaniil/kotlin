@@ -29,8 +29,8 @@
                     android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="История формулы 1"
-                    android:textSize="24sp"
+                    android:text="Formula 1 history"
+                    android:textSize="27sp"
                     android:textColor="#FFFFFF"
                     android:gravity="center"
                     android:alpha="0" />
