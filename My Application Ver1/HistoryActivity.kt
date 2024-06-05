@@ -41,17 +41,17 @@ class HistoryActivity : AppCompatActivity() {
         })
 
         val articles = listOf(
-            Article("BIRTH / APPREARANCE", "Where did the most expensive sport in the world come from?", R.drawable.image1),
-            Article("Mercedes-AMG Petronas Formula One Team", "Dominating the modern era with Lewis Hamilton and now pushing forward with George Russell.", R.drawable.mercedes),
-            Article("Scuderia Ferrari", "One of the oldest and most successful teams in F1 history, always a fan favorite.", R.drawable.ferrari),
-            Article("Red Bull Racing", "Known for their aggressive strategies and talented drivers like Max Verstappen.", R.drawable.red_bull),
-            Article("McLaren F1 Team", "A team with a rich history and numerous championships, looking to return to their former glory.", R.drawable.mclaren),
-            Article("Alpine F1 Team", "Previously Renault, the team is aiming for the top with Fernando Alonso leading the charge.", R.drawable.alpine),
-            Article("Scuderia AlphaTauri", "The sister team of Red Bull, developing young talents like Yuki Tsunoda.", R.drawable.alpha_tauri),
-            Article("Aston Martin Cognizant Formula One Team", "Rebranded from Racing Point, aiming high with Sebastian Vettel.", R.drawable.aston_martin),
-            Article("Williams Racing", "One of the most iconic teams, now rebuilding and looking for a comeback.", R.drawable.williams),
-            Article("Alfa Romeo Racing Orlen", "Sauber's latest iteration, with a strong focus on the future.", R.drawable.alfa_romeo),
-            Article("Haas F1 Team", "The American team with a strong partnership with Ferrari, aiming to improve.", R.drawable.haas),
+            Article("Рождение", "Как появился самый дорогой спорт в мире?", R.drawable.image1),
+            Article("Команда Mercedes-AMG Petronas Formula One", "Доминируя в современной эпохе с Льюисом Хэмилтоном и теперь стремясь вперед с Джорджем Расселом.", R.drawable.mercedes),
+            Article("Скудерия Феррари", "Одна из старейших и самых успешных команд в истории Формулы-1, всегда любима фанатами.", R.drawable.ferrari),
+            Article("Ред Булл Рейсинг", "Известны своими агрессивными стратегиями и талантливыми гонщиками, такими как Макс Ферстаппен.", R.drawable.red_bull),
+            Article("Команда McLaren F1", "Команда с богатой историей и многочисленными чемпионствами, стремящаяся вернуться к своей прежней славе.", R.drawable.mclaren),
+            Article("Команда Alpine F1", "Ранее Renault, команда стремится к вершине под руководством Фернандо Алонсо.", R.drawable.alpine),
+            Article("Скудерия AlphaTauri", "Сестринская команда Red Bull, развивающая молодых талантов, таких как Юки Цунода.", R.drawable.alpha_tauri),
+            Article("Команда Aston Martin Cognizant Formula One", "Переименована из Racing Point, стремится к вершине с Себастьяном Феттелем.", R.drawable.aston_martin),
+            Article("Команда Williams Racing", "Одна из самых знаковых команд, сейчас перестраивается и ищет путь к возвращению.", R.drawable.williams),
+            Article("Команда Alfa Romeo Racing Orlen", "Последняя итерация Sauber, с сильным акцентом на будущее.", R.drawable.alfa_romeo),
+            Article("Команда Haas F1", "Американская команда с сильным партнерством с Ferrari, стремящаяся к улучшению.", R.drawable.haas)
         )
 
         for (article in articles) {
