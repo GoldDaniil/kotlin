@@ -90,12 +90,20 @@ class HistoryActivity : AppCompatActivity() {
         return LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(16, 16, 16, 16)
+            val marginLayoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                setMargins(0, 0, 0, 24.dpToPx(context))
+            }
 
             val imageView = ImageView(context).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     200.dpToPx(context)
-                )
+                ).apply {
+                    setMargins(0, 0, 0, 19.dpToPx(context))
+                }
                 scaleType = ImageView.ScaleType.CENTER_CROP
                 setImageResource(article.imageResId)
             }
@@ -104,7 +112,9 @@ class HistoryActivity : AppCompatActivity() {
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
-                )
+                ).apply {
+                    setMargins(0, 0, 0, 8.dpToPx(context))
+                }
                 textSize = 18f
                 setPadding(0, 8, 0, 0)
                 setTypeface(null, Typeface.BOLD)
@@ -124,12 +134,14 @@ class HistoryActivity : AppCompatActivity() {
             addView(imageView)
             addView(titleView)
             addView(descriptionView)
+            layoutParams = marginLayoutParams
         }
     }
 
     private fun Int.dpToPx(context: Context): Int {
         return (this * context.resources.displayMetrics.density).toInt()
     }
+
 
     private fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
         val textViewMap = mapOf(
