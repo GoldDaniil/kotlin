@@ -41,15 +41,17 @@ class HistoryActivity : AppCompatActivity() {
         })
 
         val articles = listOf(
-            Article("Article 1", "Description 1", R.drawable.image1),
-            Article("Article 2", "Description 2", R.drawable.image2),
-                    Article("Article 2", "Description 2", R.drawable.image2),
-            Article("Article 2", "Description 2", R.drawable.image2),
-            Article("Article 2", "Description 2", R.drawable.image2),
-            Article("Article 2", "Description 2", R.drawable.image2),
-            Article("Article 2", "Description 2", R.drawable.image2),
-            Article("Article 2", "Description 2", R.drawable.image2),
-            // больше статей здесь
+            Article("BIRTH / APPREARANCE", "Where did the most expensive sport in the world come from?", R.drawable.image1),
+            Article("Mercedes-AMG Petronas Formula One Team", "Dominating the modern era with Lewis Hamilton and now pushing forward with George Russell.", R.drawable.mercedes),
+            Article("Scuderia Ferrari", "One of the oldest and most successful teams in F1 history, always a fan favorite.", R.drawable.ferrari),
+            Article("Red Bull Racing", "Known for their aggressive strategies and talented drivers like Max Verstappen.", R.drawable.red_bull),
+            Article("McLaren F1 Team", "A team with a rich history and numerous championships, looking to return to their former glory.", R.drawable.mclaren),
+            Article("Alpine F1 Team", "Previously Renault, the team is aiming for the top with Fernando Alonso leading the charge.", R.drawable.alpine),
+            Article("Scuderia AlphaTauri", "The sister team of Red Bull, developing young talents like Yuki Tsunoda.", R.drawable.alpha_tauri),
+            Article("Aston Martin Cognizant Formula One Team", "Rebranded from Racing Point, aiming high with Sebastian Vettel.", R.drawable.aston_martin),
+            Article("Williams Racing", "One of the most iconic teams, now rebuilding and looking for a comeback.", R.drawable.williams),
+            Article("Alfa Romeo Racing Orlen", "Sauber's latest iteration, with a strong focus on the future.", R.drawable.alfa_romeo),
+            Article("Haas F1 Team", "The American team with a strong partnership with Ferrari, aiming to improve.", R.drawable.haas),
         )
 
         for (article in articles) {
