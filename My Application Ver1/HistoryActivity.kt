@@ -97,12 +97,15 @@ class HistoryActivity : AppCompatActivity() {
                 setMargins(0, 0, 0, 24.dpToPx(context))
             }
 
+            background = ContextCompat.getDrawable(context, R.drawable.article_background)
+            elevation = 8f
+
             val imageView = ImageView(context).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     200.dpToPx(context)
                 ).apply {
-                    setMargins(0, 0, 0, 19.dpToPx(context))
+                    setMargins(0, 0, 0, 16.dpToPx(context))
                 }
                 scaleType = ImageView.ScaleType.CENTER_CROP
                 setImageResource(article.imageResId)
@@ -115,10 +118,21 @@ class HistoryActivity : AppCompatActivity() {
                 ).apply {
                     setMargins(0, 0, 0, 8.dpToPx(context))
                 }
-                textSize = 18f
+                textSize = 20f
                 setPadding(0, 8, 0, 0)
                 setTypeface(null, Typeface.BOLD)
                 text = article.title
+                setTextColor(ContextCompat.getColor(context, android.R.color.black))
+            }
+
+            val divider = View(context).apply {
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    1.dpToPx(context)
+                ).apply {
+                    setMargins(0, 8.dpToPx(context), 0, 8.dpToPx(context))
+                }
+                setBackgroundColor(ContextCompat.getColor(context, android.R.color.darker_gray))
             }
 
             val descriptionView = TextView(context).apply {
@@ -126,13 +140,15 @@ class HistoryActivity : AppCompatActivity() {
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
-                textSize = 14f
+                textSize = 16f
                 setPadding(0, 4, 0, 0)
                 text = article.description
+                setTextColor(ContextCompat.getColor(context, android.R.color.black))
             }
 
             addView(imageView)
             addView(titleView)
+            addView(divider)
             addView(descriptionView)
             layoutParams = marginLayoutParams
         }
@@ -141,6 +157,7 @@ class HistoryActivity : AppCompatActivity() {
     private fun Int.dpToPx(context: Context): Int {
         return (this * context.resources.displayMetrics.density).toInt()
     }
+
 
 
     private fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
