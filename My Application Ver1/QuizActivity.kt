@@ -20,6 +20,12 @@ class QuizActivity : AppCompatActivity() {
         "Кто является самым молодым победителем гонки Формулы-1?"
     )
 
+    private val options = listOf(
+        listOf("Джузеппе Фарина", "Феррари", "Михаэль Шумахер", "Льюис Хэмилтон"),
+        listOf("Макларен", "Феррари", "Ред Булл", "Мерседес"),
+        listOf("Себастьян Феттель", "Фернандо Алонсо", "Макс Ферстаппен", "Кими Райкконен")
+    )
+
     private val answers = listOf(
         "Джузеппе Фарина",
         "Феррари",
@@ -27,6 +33,8 @@ class QuizActivity : AppCompatActivity() {
     )
 
     private var currentQuestionIndex = 0
+    private var correctAnswers = 0
+    private var wrongAnswers = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +42,25 @@ class QuizActivity : AppCompatActivity() {
 
         showQuestion()
 
-        val buttonTrue: Button = findViewById(R.id.buttonTrue)
-        val buttonFalse: Button = findViewById(R.id.buttonFalse)
+        val buttonA: Button = findViewById(R.id.buttonA)
+        val buttonB: Button = findViewById(R.id.buttonB)
+        val buttonC: Button = findViewById(R.id.buttonC)
+        val buttonD: Button = findViewById(R.id.buttonD)
 
-        buttonTrue.setOnClickListener {
-            checkAnswer("Джузеппе Фарина", buttonTrue, buttonFalse)
+        buttonA.setOnClickListener {
+            checkAnswer(buttonA.text.toString(), buttonA, listOf(buttonB, buttonC, buttonD))
         }
 
-        buttonFalse.setOnClickListener {
-            checkAnswer("Феррари", buttonTrue, buttonFalse)
+        buttonB.setOnClickListener {
+            checkAnswer(buttonB.text.toString(), buttonB, listOf(buttonA, buttonC, buttonD))
+        }
+
+        buttonC.setOnClickListener {
+            checkAnswer(buttonC.text.toString(), buttonC, listOf(buttonA, buttonB, buttonD))
+        }
+
+        buttonD.setOnClickListener {
+            checkAnswer(buttonD.text.toString(), buttonD, listOf(buttonA, buttonB, buttonC))
         }
 
         val navHome = findViewById<LinearLayout>(R.id.nav_home)
@@ -75,6 +93,58 @@ class QuizActivity : AppCompatActivity() {
     private fun showQuestion() {
         val questionTextView: TextView = findViewById(R.id.questionTextView)
         questionTextView.text = questions[currentQuestionIndex]
+
+        val buttonA: Button = findViewById(R.id.buttonA)
+        val buttonB: Button = findViewById(R.id.buttonB)
+        val buttonC: Button = findViewById(R.id.buttonC)
+        val buttonD: Button = findViewById(R.id.buttonD)
+
+        buttonA.text = options[currentQuestionIndex][0]
+        buttonB.text = options[currentQuestionIndex][1]
+        buttonC.text = options[currentQuestionIndex][2]
+        buttonD.text = options[currentQuestionIndex][3]
+    }
+
+    private fun checkAnswer(answer: String, selectedButton: Button, otherButtons: List<Button>) {
+        val correctAnswer = answers[currentQuestionIndex]
+        if (correctAnswer.equals(answer, ignoreCase = true)) {
+            correctAnswers++
+            selectedButton.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_green_light))
+        } else {
+            wrongAnswers++
+            selectedButton.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
+            otherButtons.forEach { button ->
+                if (button.text.toString() == correctAnswer) {
+                    button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_green_light))
+                }
+            }
+        }
+        updateScore()
+
+        selectedButton.postDelayed({
+            resetButtonColors()
+            currentQuestionIndex = (currentQuestionIndex + 1) % questions.size
+            showQuestion()
+        }, 1000)
+    }
+
+    private fun resetButtonColors() {
+        val buttonA: Button = findViewById(R.id.buttonA)
+        val buttonB: Button = findViewById(R.id.buttonB)
+        val buttonC: Button = findViewById(R.id.buttonC)
+        val buttonD: Button = findViewById(R.id.buttonD)
+
+        buttonA.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
+        buttonB.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
+        buttonC.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
+        buttonD.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
+    }
+
+    private fun updateScore() {
+        val correctAnswersTextView: TextView = findViewById(R.id.correctAnswersTextView)
+        val wrongAnswersTextView: TextView = findViewById(R.id.wrongAnswersTextView)
+        correctAnswersTextView.text = "Верные ответы: $correctAnswers"
+        wrongAnswersTextView.text = "Неправильные ответы: $wrongAnswers"
     }
 
     fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
@@ -112,7 +182,7 @@ class QuizActivity : AppCompatActivity() {
             currentQuestionIndex = (currentQuestionIndex + 1) % questions.size
             showQuestion()
             resetButtonColors(buttonTrue, buttonFalse)
-        }, 1000) // Delay of 1 second
+        }, 1000)
     }
 
     private fun resetButtonColors(buttonTrue: Button, buttonFalse: Button) {
