@@ -35,4 +35,10 @@
     <color name="white_35">#59FFFFFF</color> <!-- 35% прозрачности -->
     <color name="white_20">#33FFFFFF</color> <!-- 20% прозрачности -->
 
+    <color name="background_color">#FFFFFF</color>
+    <color name="navigation_bar_color">#000000</color>
+    <color name="link_text_color">#009688</color>
+    <color name="shadow_color">#808080</color>
+    <color name="MediumSlateBlue">#7B68EE</color>
+
 </resources>
