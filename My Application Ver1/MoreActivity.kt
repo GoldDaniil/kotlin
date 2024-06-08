@@ -48,13 +48,14 @@ class MoreActivity : AppCompatActivity() {
         val linkSocialWall = findViewById<TextView>(R.id.link_social_wall)
         val linkPhoto = findViewById<TextView>(R.id.link_photo)
         val linkAuthors = findViewById<TextView>(R.id.link_authors)
+        val linkQuiz = findViewById<TextView>(R.id.link_quiz)
+
+        linkAuthors.setOnClickListener {
+            startActivity(Intent(this, AuthorsActivity::class.java))
+        }
 
         linkCalculator.setOnClickListener {
             startActivity(Intent(this, GrandPrixCalculatorActivity::class.java))
-        }
-
-        linkSettings.setOnClickListener {
-            startActivity(Intent(this, GreenBackgroundActivity::class.java))
         }
 
         linkSocialWall.setOnClickListener {
@@ -65,15 +66,20 @@ class MoreActivity : AppCompatActivity() {
             startActivity(Intent(this, PhotoGalleryActivity::class.java))
         }
 
-        linkAuthors.setOnClickListener {
+        linkQuiz.setOnClickListener {
             startActivity(Intent(this, GreenBackgroundActivity::class.java))
         }
 
-        applyAnimation(linkCalculator, 200)
-        applyAnimation(linkSettings, 300)
+        linkSettings.setOnClickListener {
+            startActivity(Intent(this, GreenBackgroundActivity::class.java))
+        }
+
+        applyAnimation(linkAuthors, 200)
+        applyAnimation(linkCalculator, 300)
         applyAnimation(linkSocialWall, 400)
         applyAnimation(linkPhoto, 500)
-        applyAnimation(linkAuthors, 600)
+        applyAnimation(linkQuiz, 600)
+        applyAnimation(linkSettings, 700)
 
     }
 
