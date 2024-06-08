@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="@drawable/background_image_main_bull"
     tools:context=".MoreActivity">
 
     <ScrollView
@@ -21,10 +21,10 @@
             android:paddingBottom="16dp">
 
             <TextView
-                android:id="@+id/link_calculator"
+                android:id="@+id/link_authors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CALCULATOR"
+                android:text="AUTHORS"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/link_text_color"
@@ -38,10 +38,10 @@
                 android:shadowRadius="3" />
 
             <TextView
-                android:id="@+id/link_settings"
+                android:id="@+id/link_calculator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SETTINGS"
+                android:text="CALCULATOR"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/link_text_color"
@@ -89,10 +89,27 @@
                 android:shadowRadius="3" />
 
             <TextView
-                android:id="@+id/link_authors"
+                android:id="@+id/link_quiz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AUTHORS"
+                android:text="QUIZ"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/link_text_color"
+                android:padding="16dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"
+                android:shadowColor="@color/shadow_color"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="3" />
+
+            <TextView
+                android:id="@+id/link_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SETTINGS"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/link_text_color"
