@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/questionTextView"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/questionCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Question"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
         android:layout_marginBottom="32dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="48dp"
-        android:padding="28dp"/>
+        android:padding="30dp"
+        cardview:cardCornerRadius="12dp"
+        cardview:cardElevation="6dp"
+        cardview:cardBackgroundColor="@android:color/white">
+
+        <TextView
+            android:id="@+id/questionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Question"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:padding="30dp" />
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:id="@+id/top_buttons"
@@ -23,10 +34,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_below="@id/questionTextView"
+        android:layout_below="@id/questionCardView"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:padding="28dp">
+        android:padding="20dp">
 
         <Button
             android:id="@+id/buttonA"
@@ -58,7 +69,7 @@
         android:layout_below="@id/top_buttons"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
-        android:padding="28dp">
+        android:padding="20dp">
 
         <Button
             android:id="@+id/buttonC"
@@ -89,7 +100,7 @@
         android:gravity="center"
         android:layout_below="@id/bottom_buttons"
         android:layout_marginTop="16dp"
-        android:padding="18dp">
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/correctAnswersTextView"
