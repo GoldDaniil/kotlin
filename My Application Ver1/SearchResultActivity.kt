@@ -69,11 +69,11 @@ class SearchResultActivity : AppCompatActivity() {
         }
 
         navHistory.setOnClickListener {
-            changeColorAndNavigateWithDelay(navHistory, GreenBackgroundActivity::class.java)
+            changeColorAndNavigateWithDelay(navHistory, HistoryActivity::class.java)
         }
 
         navMore.setOnClickListener {
-            changeColorAndNavigateWithDelay(navMore, GreenBackgroundActivity::class.java)
+            changeColorAndNavigateWithDelay(navMore, MoreActivity::class.java)
         }
 
 
@@ -118,7 +118,7 @@ class SearchResultActivity : AppCompatActivity() {
         }
 
         button5.setOnClickListener {
-            val intent = Intent(this, GreenBackgroundActivity::class.java)
+            val intent = Intent(this, QuizActivity::class.java)
             startActivity(intent)
         }
     }
@@ -136,7 +136,7 @@ class SearchResultActivity : AppCompatActivity() {
     }
 
     fun openGreenBackgroundActivity(view: View) {
-        startActivity(Intent(this, GreenBackgroundActivity::class.java))
+        startActivity(Intent(this, QuizActivity::class.java))
     }
 
     private fun toggleTextViewVisibility(textView: TextView, overlayView: View, button: Button?, allTextViews: List<TextView>, allOverlayViews: List<View>, allButtons: List<Button>) {
