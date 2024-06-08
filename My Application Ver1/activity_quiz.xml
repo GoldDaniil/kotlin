@@ -14,35 +14,102 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="48dp"
+        android:padding="28dp"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/top_buttons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_below="@id/questionTextView"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="28dp">
 
         <Button
-            android:id="@+id/buttonTrue"
-            android:layout_width="wrap_content"
+            android:id="@+id/buttonA"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="True"
+            android:layout_weight="1"
+            android:text="Answer A"
             android:backgroundTint="@android:color/darker_gray"
             android:textColor="@android:color/white"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginEnd="8dp"/>
 
         <Button
-            android:id="@+id/buttonFalse"
-            android:layout_width="wrap_content"
+            android:id="@+id/buttonB"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="False"
+            android:layout_weight="1"
+            android:text="Answer B"
             android:backgroundTint="@android:color/darker_gray"
             android:textColor="@android:color/white"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/bottom_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@id/top_buttons"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        android:padding="28dp">
+
+        <Button
+            android:id="@+id/buttonC"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Answer C"
+            android:backgroundTint="@android:color/darker_gray"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/buttonD"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Answer D"
+            android:backgroundTint="@android:color/darker_gray"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/score_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_below="@id/bottom_buttons"
+        android:layout_marginTop="16dp"
+        android:padding="18dp">
+
+        <TextView
+            android:id="@+id/correctAnswersTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Верные ответы: 0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/wrongAnswersTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Неправильные ответы: 0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -180,5 +247,4 @@
                 android:textSize="19sp" />
         </LinearLayout>
     </LinearLayout>
-
 </RelativeLayout>
