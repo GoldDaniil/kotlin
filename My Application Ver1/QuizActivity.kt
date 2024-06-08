@@ -38,11 +38,11 @@ class QuizActivity : AppCompatActivity() {
         val buttonFalse: Button = findViewById(R.id.buttonFalse)
 
         buttonTrue.setOnClickListener {
-            checkAnswer("true", buttonTrue, buttonFalse)
+            checkAnswer("Джузеппе Фарина", buttonTrue, buttonFalse)
         }
 
         buttonFalse.setOnClickListener {
-            checkAnswer("false", buttonTrue, buttonFalse)
+            checkAnswer("Феррари", buttonTrue, buttonFalse)
         }
 
         val navHome = findViewById<LinearLayout>(R.id.nav_home)
@@ -72,6 +72,11 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
+    private fun showQuestion() {
+        val questionTextView: TextView = findViewById(R.id.questionTextView)
+        questionTextView.text = questions[currentQuestionIndex]
+    }
+
     fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
         val textViewMap = mapOf(
             R.id.nav_home to R.id.nav_a,
@@ -95,11 +100,6 @@ class QuizActivity : AppCompatActivity() {
         }, delayMillis)
     }
 
-    private fun showQuestion() {
-        val questionTextView: TextView = findViewById(R.id.questionTextView)
-        questionTextView.text = questions[currentQuestionIndex]
-    }
-
     private fun checkAnswer(answer: String, buttonTrue: Button, buttonFalse: Button) {
         val correctAnswer = answers[currentQuestionIndex]
         val correctButton = if (correctAnswer.equals(answer, ignoreCase = true)) buttonTrue else buttonFalse
@@ -112,7 +112,7 @@ class QuizActivity : AppCompatActivity() {
             currentQuestionIndex = (currentQuestionIndex + 1) % questions.size
             showQuestion()
             resetButtonColors(buttonTrue, buttonFalse)
-        }, 1000) 
+        }, 1000) // Delay of 1 second
     }
 
     private fun resetButtonColors(buttonTrue: Button, buttonFalse: Button) {
