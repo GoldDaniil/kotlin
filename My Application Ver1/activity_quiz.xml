@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="True"
-            android:background="@android:color/darker_gray"
+            android:backgroundTint="@android:color/darker_gray"
             android:textColor="@android:color/white"
             android:layout_marginEnd="16dp"/>
 
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="False"
-            android:background="@android:color/darker_gray"
+            android:backgroundTint="@android:color/darker_gray"
             android:textColor="@android:color/white"
             android:layout_marginStart="16dp"/>
 
