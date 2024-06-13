@@ -49,6 +49,8 @@ class MoreActivity : AppCompatActivity() {
         val linkPhoto = findViewById<TextView>(R.id.link_photo)
         val linkAuthors = findViewById<TextView>(R.id.link_authors)
         val linkQuiz = findViewById<TextView>(R.id.link_quiz)
+        val lingMemoryGame = findViewById<TextView>(R.id.link_memory_game)
+        val linkLoopGame = findViewById<TextView>(R.id.link_loop_game)
 
         linkAuthors.setOnClickListener {
             startActivity(Intent(this, AuthorsActivity::class.java))
@@ -67,11 +69,19 @@ class MoreActivity : AppCompatActivity() {
         }
 
         linkQuiz.setOnClickListener {
-            startActivity(Intent(this, GreenBackgroundActivity::class.java))
+            startActivity(Intent(this, QuizActivity::class.java))
+        }
+
+        lingMemoryGame.setOnClickListener {
+            startActivity(Intent(this, QuizGameActivity::class.java))
         }
 
         linkSettings.setOnClickListener {
             startActivity(Intent(this, GreenBackgroundActivity::class.java))
+        }
+
+        linkLoopGame.setOnClickListener {
+            startActivity(Intent(this, LoopGameActivity::class.java))
         }
 
         applyAnimation(linkAuthors, 200)
@@ -79,7 +89,9 @@ class MoreActivity : AppCompatActivity() {
         applyAnimation(linkSocialWall, 400)
         applyAnimation(linkPhoto, 500)
         applyAnimation(linkQuiz, 600)
-        applyAnimation(linkSettings, 700)
+        applyAnimation(lingMemoryGame, 700)
+        applyAnimation(linkLoopGame, 750)
+        applyAnimation(linkSettings, 800)
 
     }
 
