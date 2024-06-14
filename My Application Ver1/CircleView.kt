@@ -27,7 +27,8 @@ class CircleView @JvmOverloads constructor(
     private val iconSize = 50 // размер иконки в пикселях
     private var centerX = 0f // координата X центра окружности
     private var centerY = 0f // координата Y центра окружности
-    private var radius = 0f // радиус окружности, по которой двигается иконка
+    private var radiusRed = 0f // радиус красной окружности
+    private var radiusWhite = 0f // радиус белой окружности
 
     private var animator: ValueAnimator? = null
 
@@ -46,17 +47,17 @@ class CircleView @JvmOverloads constructor(
 
         val screenWidth = resources.displayMetrics.widthPixels
         outerDiameter = (screenWidth * 2) / 3
-        innerDiameter = (screenWidth * 2) / 3 - (screenWidth / 5)
-        borderWidth = (screenWidth / 20)
-        borderPaint.strokeWidth = borderWidth.toFloat()
+        innerDiameter = (screenWidth * 2) / 3 - (screenWidth / 5) 
+        borderWidth = (screenWidth / 15) 
+        borderPaint.strokeWidth = borderWidth.toFloat() 
 
         animator = ValueAnimator.ofFloat(0f, 360f)
         animator?.repeatMode = ValueAnimator.RESTART
         animator?.repeatCount = ValueAnimator.INFINITE
-        animator?.duration = 3000 
+        animator?.duration = 3000
         animator?.addUpdateListener { animation ->
             currentAngle = animation.animatedValue as Float
-            invalidate()
+            invalidate() 
         }
         animator?.start()
     }
@@ -66,19 +67,20 @@ class CircleView @JvmOverloads constructor(
 
         centerX = outerDiameter / 2f
         centerY = outerDiameter / 2f
-        radius = (outerDiameter - innerDiameter) / 2f 
+        radiusRed = outerDiameter / 2f - borderWidth / 2f 
+        radiusWhite = innerDiameter / 2f 
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        canvas.drawCircle(centerX, centerY, outerDiameter / 2f - borderWidth / 2f, outerPaint)
-        canvas.drawCircle(centerX, centerY, outerDiameter / 2f - borderWidth / 2f, borderPaint)
+        canvas.drawCircle(centerX, centerY, radiusRed, outerPaint)
+        canvas.drawCircle(centerX, centerY, radiusRed, borderPaint)
 
-        canvas.drawCircle(centerX, centerY, innerDiameter / 2f, innerPaint)
+        canvas.drawCircle(centerX, centerY, radiusWhite, innerPaint)
 
-        val iconX = centerX + radius * Math.cos(Math.toRadians(currentAngle.toDouble())).toFloat()
-        val iconY = centerY + radius * Math.sin(Math.toRadians(currentAngle.toDouble())).toFloat()
+        val iconX = centerX + radiusRed * Math.cos(Math.toRadians(currentAngle.toDouble())).toFloat()
+        val iconY = centerY + radiusRed * Math.sin(Math.toRadians(currentAngle.toDouble())).toFloat()
 
         helmetIcon?.let {
             val iconLeft = iconX - iconSize / 2
