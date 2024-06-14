@@ -51,10 +51,10 @@ class CircleView @JvmOverloads constructor(
         borderWidth = (screenWidth / 15) 
         borderPaint.strokeWidth = borderWidth.toFloat() 
 
-        centerX = outerDiameter / 2f
-        centerY = outerDiameter / 2f
+        centerX = (screenWidth - outerDiameter) / 2f + outerDiameter / 2f
+        centerY = (screenWidth - outerDiameter) / 2f + outerDiameter / 2f
         radiusRed = outerDiameter / 2f - borderWidth / 2f 
-        radiusWhite = innerDiameter / 2f
+        radiusWhite = innerDiameter / 2f 
 
         startAnimation()
     }
@@ -70,7 +70,7 @@ class CircleView @JvmOverloads constructor(
                 if (System.currentTimeMillis() - startTime < animationDuration) {
                     postDelayed(this, 16) 
                 } else {
-                    startAnimation() 
+                    startAnimation()
                 }
             }
         })
