@@ -1,8 +1,10 @@
 package com.example.myapplication
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -21,6 +23,16 @@ class CircleView @JvmOverloads constructor(
     private var innerDiameter = 0
     private var borderWidth = 0
 
+    private var currentAngle = 0f // текущий угол для положения иконки
+    private val iconSize = 50 // размер иконки в пикселях
+    private var centerX = 0f // координата X центра окружности
+    private var centerY = 0f // координата Y центра окружности
+    private var radius = 0f // радиус окружности, по которой двигается иконка
+
+    private var animator: ValueAnimator? = null
+
+    private var helmetIcon: Drawable? = null
+
     init {
         outerPaint.color = ContextCompat.getColor(context, android.R.color.transparent)
         innerPaint.color = ContextCompat.getColor(context, android.R.color.white)
@@ -29,28 +41,52 @@ class CircleView @JvmOverloads constructor(
         outerPaint.style = Paint.Style.FILL
         innerPaint.style = Paint.Style.FILL
         borderPaint.style = Paint.Style.STROKE
-        borderPaint.strokeWidth = resources.displayMetrics.density * 2
+
+        helmetIcon = ContextCompat.getDrawable(context, R.drawable.helmet_icon)
 
         val screenWidth = resources.displayMetrics.widthPixels
         outerDiameter = (screenWidth * 2) / 3
         innerDiameter = (screenWidth * 2) / 3 - (screenWidth / 5)
         borderWidth = (screenWidth / 20)
+        borderPaint.strokeWidth = borderWidth.toFloat()
+
+        animator = ValueAnimator.ofFloat(0f, 360f)
+        animator?.repeatMode = ValueAnimator.RESTART
+        animator?.repeatCount = ValueAnimator.INFINITE
+        animator?.duration = 3000 
+        animator?.addUpdateListener { animation ->
+            currentAngle = animation.animatedValue as Float
+            invalidate()
+        }
+        animator?.start()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         setMeasuredDimension(outerDiameter, outerDiameter)
+
+        centerX = outerDiameter / 2f
+        centerY = outerDiameter / 2f
+        radius = (outerDiameter - innerDiameter) / 2f 
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val outerRadius = outerDiameter / 2f
-        val innerRadius = innerDiameter / 2f
-        val borderWidthHalf = borderWidth / 2f
+        canvas.drawCircle(centerX, centerY, outerDiameter / 2f - borderWidth / 2f, outerPaint)
+        canvas.drawCircle(centerX, centerY, outerDiameter / 2f - borderWidth / 2f, borderPaint)
 
-        canvas.drawCircle(outerRadius, outerRadius, outerRadius - borderWidthHalf, outerPaint)
-        canvas.drawCircle(outerRadius, outerRadius, outerRadius - borderWidthHalf, borderPaint)
+        canvas.drawCircle(centerX, centerY, innerDiameter / 2f, innerPaint)
 
-        canvas.drawCircle(outerRadius, outerRadius, innerRadius, innerPaint)
+        val iconX = centerX + radius * Math.cos(Math.toRadians(currentAngle.toDouble())).toFloat()
+        val iconY = centerY + radius * Math.sin(Math.toRadians(currentAngle.toDouble())).toFloat()
+
+        helmetIcon?.let {
+            val iconLeft = iconX - iconSize / 2
+            val iconTop = iconY - iconSize / 2
+            val iconRight = iconX + iconSize / 2
+            val iconBottom = iconY + iconSize / 2
+            it.setBounds(iconLeft.toInt(), iconTop.toInt(), iconRight.toInt(), iconBottom.toInt())
+            it.draw(canvas)
+        }
     }
 }
