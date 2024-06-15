@@ -22,7 +22,8 @@ class GamesActivity : AppCompatActivity() {
         val games = listOf(
             Game(R.drawable.photo1, "Description of Quiz Game", QuizActivity::class.java),
             Game(R.drawable.photo2, "Description of Memory Game", QuizGameActivity::class.java),
-            Game(R.drawable.photo3, "Description of Loop Game", LoopGameActivity::class.java)
+            Game(R.drawable.photo3, "Description of Loop Game", LoopGameActivity::class.java),
+            Game(R.drawable.photo4, "Description of Reaction Game", ReactionGameActivity::class.java)
         )
 
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
