@@ -14,41 +14,47 @@ import androidx.core.content.ContextCompat
 
 class QuizGameActivity : AppCompatActivity() {
 
-    private val delayMillis: Long = 1000 // 1 секунда
-    data class QuizQuestion(val question: String, val options: List<String>, val correctAnswer: String)
+    private val delayMillis: Long = 80 // 60/1000 секунды
 
     private val questions = listOf(
-        QuizQuestion("Кто изображен на фото?", listOf("Джузеппе Фарина", "Феррари", "Михаэль Шумахер", "Льюис Хэмилтон"), "Джузеппе Фарина"),
-        QuizQuestion("Какая команда выиграла чемпионат мира 2019 года?", listOf("Феррари", "Мерседес", "Ред Булл", "Макларен"), "Мерседес"),
+        "Кто изображен на фото?",
+        "Кто изображен на фото?",
+        "Что изображено на фото?"
+    )
+
+    private val options = listOf(
+        listOf("Джузеппе Фарина", "Феррари", "Михаэль Шумахер", "Льюис Хэмилтон"),
+        listOf("Себастьян Феттель", "Фернандо Алонсо", "Макс Ферстаппен", "Кими Райкконен"),
+        listOf("Себастьян Феттель", "Шины", "крыло", "суппорт")
     )
 
     private val answers = listOf(
         "Джузеппе Фарина",
-        "Феррари",
-        "Макс Ферстаппен",
+        "Себастьян Феттель",
+        "Шины"
+    )
+
+    private val imageResources = listOf(
+        R.drawable.image1, 
+        R.drawable.image2,
+        R.drawable.image3
     )
 
     private var currentQuestionIndex = 0
     private var correctAnswers = 0
     private var wrongAnswers = 0
 
-    private lateinit var questionImageView: ImageView
-    private lateinit var buttonA: Button
-    private lateinit var buttonB: Button
-    private lateinit var buttonC: Button
-    private lateinit var buttonD: Button
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_game)
 
-        questionImageView = findViewById(R.id.questionImageView)
-        buttonA = findViewById(R.id.buttonA)
-        buttonB = findViewById(R.id.buttonB)
-        buttonC = findViewById(R.id.buttonC)
-        buttonD = findViewById(R.id.buttonD)
-
         showQuestion()
+
+        val buttonA: Button = findViewById(R.id.buttonA)
+        val buttonB: Button = findViewById(R.id.buttonB)
+        val buttonC: Button = findViewById(R.id.buttonC)
+        val buttonD: Button = findViewById(R.id.buttonD)
+        val retryButton: Button = findViewById(R.id.retryButton)
 
         buttonA.setOnClickListener {
             checkAnswer(buttonA.text.toString(), buttonA, listOf(buttonB, buttonC, buttonD))
@@ -66,26 +72,80 @@ class QuizGameActivity : AppCompatActivity() {
             checkAnswer(buttonD.text.toString(), buttonD, listOf(buttonA, buttonB, buttonC))
         }
 
+        retryButton.setOnClickListener {
+            resetGame()
+        }
+
+        val navHome = findViewById<LinearLayout>(R.id.nav_home)
+        val navNews = findViewById<LinearLayout>(R.id.nav_news)
+        val navRace = findViewById<LinearLayout>(R.id.nav_race)
+        val navHistory = findViewById<LinearLayout>(R.id.nav_history)
+        val navMore = findViewById<LinearLayout>(R.id.nav_more)
+
+        navHome.setOnClickListener {
+            changeColorAndNavigateWithDelay(navHome, SearchResultActivity::class.java)
+        }
+
+        navNews.setOnClickListener {
+            changeColorAndNavigateWithDelay(navNews, NewsActivity::class.java)
+        }
+
+        navRace.setOnClickListener {
+            changeColorAndNavigateWithDelay(navRace, YouTubeVideosActivity::class.java)
+        }
+
+        navHistory.setOnClickListener {
+            changeColorAndNavigateWithDelay(navHistory, HistoryActivity::class.java)
+        }
+
+        navMore.setOnClickListener {
+            changeColorAndNavigateWithDelay(navMore, MoreActivity::class.java)
+        }
     }
 
     private fun showQuestion() {
         val questionTextView: TextView = findViewById(R.id.questionTextView)
-        questionTextView.text = questions[currentQuestionIndex].question
+        questionTextView.text = questions[currentQuestionIndex]
 
         val buttonA: Button = findViewById(R.id.buttonA)
         val buttonB: Button = findViewById(R.id.buttonB)
         val buttonC: Button = findViewById(R.id.buttonC)
         val buttonD: Button = findViewById(R.id.buttonD)
+        val questionImageView: ImageView = findViewById(R.id.questionImageView)
 
-        val currentQuestion = questions[currentQuestionIndex]
-        buttonA.text = currentQuestion.options[0]
-        buttonB.text = currentQuestion.options[1]
-        buttonC.text = currentQuestion.options[2]
-        buttonD.text = currentQuestion.options[3]
+        buttonA.text = options[currentQuestionIndex][0]
+        buttonB.text = options[currentQuestionIndex][1]
+        buttonC.text = options[currentQuestionIndex][2]
+        buttonD.text = options[currentQuestionIndex][3]
+
+        questionImageView.setImageResource(imageResources[currentQuestionIndex])
+    }
+
+    fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
+        val textViewMap = mapOf(
+            R.id.nav_home to R.id.nav_a,
+            R.id.nav_news to R.id.nav_b,
+            R.id.nav_race to R.id.nav_c,
+            R.id.nav_history to R.id.nav_d,
+            R.id.nav_more to R.id.nav_e
+        )
+
+        for ((parentId, textViewId) in textViewMap) {
+            findViewById<TextView>(textViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
+        }
+
+        val selectedTextViewId = textViewMap[layout.id]
+        findViewById<TextView>(selectedTextViewId!!)?.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, activityClass))
+
+            findViewById<TextView>(selectedTextViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
+        }, delayMillis)
     }
 
     private fun checkAnswer(answer: String, selectedButton: Button, otherButtons: List<Button>) {
-        val correctAnswer = questions[currentQuestionIndex].correctAnswer
+        val correctAnswer = answers[currentQuestionIndex]
         if (correctAnswer.equals(answer, ignoreCase = true)) {
             correctAnswers++
             selectedButton.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_green_light))
@@ -170,5 +230,4 @@ class QuizGameActivity : AppCompatActivity() {
         updateScore()
         showQuestion()
     }
-
 }
