@@ -12,6 +12,7 @@
         android:elevation="4dp">
 
         <LinearLayout
+            android:id="@+id/game_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -24,7 +25,7 @@
                 android:layout_weight="1"
                 android:maxHeight="0dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/background_image_main_bull" />
+                android:src="@drawable/background_image_main_bull"/>
 
             <TextView
                 android:id="@+id/game_description"
