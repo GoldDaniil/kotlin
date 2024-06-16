@@ -75,8 +75,8 @@ class GamesActivity : AppCompatActivity() {
             val colorAnimation = ValueAnimator.ofObject(
                 ArgbEvaluator(),
                 Color.parseColor("#FFCDD2"), // пастельный розовый
-                Color.parseColor("#C8E6C9"), // пастельный зеленый
-                Color.parseColor("#BBDEFB"), // пастельный синий
+                Color.parseColor("#F5E0C3"), // пастельный бежевый
+                Color.parseColor("#D3B88C"), // темно-бежевый
                 Color.parseColor("#D1C4E9")  // пастельный фиолетовый
             )
 
