@@ -5,7 +5,6 @@ import random
 
 pygame.init()
 
-# Constants
 WIDTH, HEIGHT = 600, 600
 WHITE, BLACK, RED = (255, 255, 255), (0, 0, 0), (255, 0, 0)
 FPS = 60
@@ -19,9 +18,9 @@ font = pygame.font.SysFont(None, 75)
 small_font = pygame.font.SysFont(None, 55)
 
 angle = 0
-base_speed_range = (360 / 5, 360 / 2.5)
+speed_options = [360 / 5, 360 / 4, 360 / 3.5, 360 / 3, 360 / 2.5]
 arc_length_range = (10, 60)
-speed = random.uniform(*base_speed_range)
+speed = random.choice(speed_options)
 arc_length = random.randint(*arc_length_range)
 score = 0
 game_over = False
@@ -56,7 +55,7 @@ def draw_score(score):
 def reset_zone_and_speed():
     global speed, arc_length, start_angle
     start_angle = random.randint(0, 360 - arc_length)
-    speed = random.uniform(*base_speed_range)
+    speed = random.choice(speed_options)
     arc_length = random.randint(*arc_length_range)
 
 def check_click(center, radius, angle, s_angle, arc_len):
@@ -78,7 +77,6 @@ def check_click(center, radius, angle, s_angle, arc_len):
         else:
             game_over = True
 
-
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -92,7 +90,11 @@ while True:
     if not game_over:
         draw_colored_zone((WIDTH // 2, HEIGHT // 2), CIRCLE_RADIUS, start_angle, arc_length, RED)
         draw_moving_symbol((WIDTH // 2, HEIGHT // 2), CIRCLE_RADIUS, angle, "C")
+        previous_angle = angle
         angle = (angle + speed / FPS) % 360
+
+        if previous_angle > angle:
+            reset_zone_and_speed()
 
     else:
         text = font.render("Game Over", True, BLACK)
