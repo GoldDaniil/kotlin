@@ -16,8 +16,8 @@ class LoopGameActivity : AppCompatActivity() {
     private lateinit var surfaceHolder: SurfaceHolder
     private lateinit var drawingThread: DrawingThread
 
-    private val circleRadius = 300 // Увеличиваем радиус круга
-    private val circleThickness = 10 // Увеличиваем толщину обводки круга
+    private val circleRadius = 450 // Увеличиваем радиус круга
+    private val circleThickness = 15 // Увеличиваем толщину обводки круга
 
     private val gray = Color.rgb(169, 169, 169)
     private val beige = Color.rgb(245, 245, 220)
@@ -26,7 +26,7 @@ class LoopGameActivity : AppCompatActivity() {
     private val red = Color.rgb(255, 0, 0)
     private val black = Color.rgb(0, 0, 0)
 
-    private val speedOptions = listOf(360 / 5.0, 360 / 4.0, 360 / 3.5, 360 / 3.0, 360 / 2.5)
+    private val speedOptions = listOf(360 / 3.0, 360 / 2.5, 360 / 2.0, 360 / 1.5)
     private val arcLengthRange = IntRange(10, 60)
 
     private var angle = 0.0
@@ -123,7 +123,7 @@ class LoopGameActivity : AppCompatActivity() {
                 val path = Path()
 
                 val trianglePoints = mutableListOf<PointF>()
-                trianglePoints.add(PointF(centerX.toFloat(), centerY.toFloat())) 
+                trianglePoints.add(PointF(centerX.toFloat(), centerY.toFloat()))
 
                 val startX = centerX + (outerRadius * cos(startAngleRad)).toFloat()
                 val startY = centerY - (outerRadius * sin(startAngleRad)).toFloat()
