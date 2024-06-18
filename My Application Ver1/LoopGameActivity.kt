@@ -8,6 +8,8 @@ import android.view.SurfaceView
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.math.*
+import android.os.Handler
+import android.os.Looper
 
 class LoopGameActivity : AppCompatActivity() {
 
@@ -15,10 +17,10 @@ class LoopGameActivity : AppCompatActivity() {
     private lateinit var surfaceHolder: SurfaceHolder
     private lateinit var drawingThread: DrawingThread
 
-    private val width = 600
-    private val height = 600
-    private val circleRadius = 200
-    private val circleThickness = 5
+    private val width = 800 // Увеличиваем размеры экрана
+    private val height = 800 // Увеличиваем размеры экрана
+    private val circleRadius = 300 // Увеличиваем радиус круга
+    private val circleThickness = 10 // Увеличиваем толщину обводки круга
 
     private val gray = Color.rgb(169, 169, 169)
     private val beige = Color.rgb(245, 245, 220)
@@ -36,9 +38,11 @@ class LoopGameActivity : AppCompatActivity() {
     private var score = 0
     private var gameOver = false
     private var startAngle = (0..(360 - arcLength)).random()
-    private val FPS = 60 // константа для количества кадров в секунду
 
     private lateinit var icon: Bitmap
+    private var dynamicScoreDisplay = ""
+
+    private val FPS = 60 // Константа для количества кадров в секунду
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +68,8 @@ class LoopGameActivity : AppCompatActivity() {
 
     private inner class DrawingThread : Thread() {
         private var running = false
+        private var targetScore = score
+        private val handler = Handler(Looper.getMainLooper())
 
         fun stopThread() {
             running = false
@@ -120,7 +126,7 @@ class LoopGameActivity : AppCompatActivity() {
                 val path = Path()
 
                 val trianglePoints = mutableListOf<PointF>()
-                trianglePoints.add(PointF(centerX.toFloat(), centerY.toFloat()))
+                trianglePoints.add(PointF(centerX.toFloat(), centerY.toFloat())) // Center of the circle
 
                 val startX = centerX + (outerRadius * cos(startAngleRad)).toFloat()
                 val startY = centerY - (outerRadius * sin(startAngleRad)).toFloat()
@@ -151,6 +157,14 @@ class LoopGameActivity : AppCompatActivity() {
                 if (previousAngle > angle) {
                     resetZoneAndSpeed()
                 }
+
+                if (targetScore != score) {
+                    targetScore = score
+                    dynamicScoreDisplay = "+1"
+                    handler.postDelayed({
+                        dynamicScoreDisplay = ""
+                    }, 500)
+                }
             } else {
                 val textPaint = Paint().apply {
                     color = red
@@ -163,8 +177,18 @@ class LoopGameActivity : AppCompatActivity() {
             val scoreTextPaint = Paint().apply {
                 color = black
                 textSize = 55f
+                textAlign = Paint.Align.CENTER
             }
-            canvas.drawText("Результат: $score", 10f, 10f + scoreTextPaint.textSize, scoreTextPaint)
+            canvas.drawText("Результат: $score", (width / 2).toFloat(), (height - 50).toFloat(), scoreTextPaint)
+
+            if (dynamicScoreDisplay.isNotEmpty()) {
+                val dynamicTextPaint = Paint().apply {
+                    color = green
+                    textSize = 70f
+                    textAlign = Paint.Align.CENTER
+                }
+                canvas.drawText(dynamicScoreDisplay, (width / 2).toFloat(), (height / 2).toFloat(), dynamicTextPaint)
+            }
         }
     }
 
