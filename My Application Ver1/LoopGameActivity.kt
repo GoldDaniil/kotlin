@@ -2,14 +2,13 @@ package com.example.myapplication
 
 import android.graphics.*
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.math.*
-import android.os.Handler
-import android.os.Looper
 
 class LoopGameActivity : AppCompatActivity() {
 
@@ -17,8 +16,6 @@ class LoopGameActivity : AppCompatActivity() {
     private lateinit var surfaceHolder: SurfaceHolder
     private lateinit var drawingThread: DrawingThread
 
-    private val width = 800 // Увеличиваем размеры экрана
-    private val height = 800 // Увеличиваем размеры экрана
     private val circleRadius = 300 // Увеличиваем радиус круга
     private val circleThickness = 10 // Увеличиваем толщину обводки круга
 
@@ -95,8 +92,8 @@ class LoopGameActivity : AppCompatActivity() {
             canvas.drawColor(Color.WHITE)
 
             if (!gameOver) {
-                val centerX = width / 2
-                val centerY = height / 2
+                val centerX = canvas.width / 2
+                val centerY = canvas.height / 2
 
                 val outerRadius = circleRadius + circleThickness
                 val innerRadius = circleRadius - circleThickness
@@ -126,7 +123,7 @@ class LoopGameActivity : AppCompatActivity() {
                 val path = Path()
 
                 val trianglePoints = mutableListOf<PointF>()
-                trianglePoints.add(PointF(centerX.toFloat(), centerY.toFloat())) // Center of the circle
+                trianglePoints.add(PointF(centerX.toFloat(), centerY.toFloat())) 
 
                 val startX = centerX + (outerRadius * cos(startAngleRad)).toFloat()
                 val startY = centerY - (outerRadius * sin(startAngleRad)).toFloat()
@@ -171,15 +168,15 @@ class LoopGameActivity : AppCompatActivity() {
                     textSize = 75f
                     textAlign = Paint.Align.CENTER
                 }
-                canvas.drawText("ХА! лох", (width / 2).toFloat(), (height / 2).toFloat(), textPaint)
+                canvas.drawText("ХА! лох", (canvas.width / 2).toFloat(), (canvas.height / 2).toFloat(), textPaint)
             }
 
             val scoreTextPaint = Paint().apply {
                 color = black
-                textSize = 55f
+                textSize = 24f
                 textAlign = Paint.Align.CENTER
             }
-            canvas.drawText("Результат: $score", (width / 2).toFloat(), (height - 50).toFloat(), scoreTextPaint)
+            canvas.drawText("Результат: $score", (canvas.width / 2).toFloat(), (canvas.height / 10).toFloat(), scoreTextPaint)
 
             if (dynamicScoreDisplay.isNotEmpty()) {
                 val dynamicTextPaint = Paint().apply {
@@ -187,7 +184,7 @@ class LoopGameActivity : AppCompatActivity() {
                     textSize = 70f
                     textAlign = Paint.Align.CENTER
                 }
-                canvas.drawText(dynamicScoreDisplay, (width / 2).toFloat(), (height / 2).toFloat(), dynamicTextPaint)
+                canvas.drawText(dynamicScoreDisplay, (canvas.width / 2).toFloat(), (canvas.height / 2).toFloat(), dynamicTextPaint)
             }
         }
     }
@@ -200,7 +197,7 @@ class LoopGameActivity : AppCompatActivity() {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if (event?.action == MotionEvent.ACTION_DOWN && !gameOver) {
-            checkClick(width / 2, height / 2, angle, startAngle, arcLength)
+            checkClick(surfaceView.width / 2, surfaceView.height / 2, angle, startAngle, arcLength)
         }
         return super.onTouchEvent(event)
     }
@@ -227,4 +224,3 @@ class LoopGameActivity : AppCompatActivity() {
         }
     }
 }
-
