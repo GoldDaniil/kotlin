@@ -173,7 +173,7 @@ class LoopGameActivity : AppCompatActivity() {
 
             val scoreTextPaint = Paint().apply {
                 color = black
-                textSize = 24f
+                textSize = 70f
                 textAlign = Paint.Align.CENTER
             }
             canvas.drawText("Результат: $score", (canvas.width / 2).toFloat(), (canvas.height / 10).toFloat(), scoreTextPaint)
@@ -181,7 +181,7 @@ class LoopGameActivity : AppCompatActivity() {
             if (dynamicScoreDisplay.isNotEmpty()) {
                 val dynamicTextPaint = Paint().apply {
                     color = green
-                    textSize = 70f
+                    textSize = 60f
                     textAlign = Paint.Align.CENTER
                 }
                 canvas.drawText(dynamicScoreDisplay, (canvas.width / 2).toFloat(), (canvas.height / 2).toFloat(), dynamicTextPaint)
