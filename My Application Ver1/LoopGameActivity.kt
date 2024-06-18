@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
 import android.os.Handler
@@ -7,10 +8,16 @@ import android.os.Looper
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import kotlin.math.*
 
 class LoopGameActivity : AppCompatActivity() {
+
+    private val delayMillis: Long = 80 // 60/1000 секунды
 
     private lateinit var surfaceView: SurfaceView
     private lateinit var surfaceHolder: SurfaceHolder
@@ -38,6 +45,13 @@ class LoopGameActivity : AppCompatActivity() {
 
     private lateinit var icon: Bitmap
     private var dynamicScoreDisplay = ""
+    private var dynamicScoreY = 0f
+    private var dynamicScoreAlpha = 0f
+    private val dynamicScorePaint = Paint().apply {
+        color = Color.GREEN
+        textSize = 70f
+        textAlign = Paint.Align.CENTER
+    }
 
     private val FPS = 60 // Константа для количества кадров в секунду
 
@@ -56,6 +70,71 @@ class LoopGameActivity : AppCompatActivity() {
 
         drawingThread = DrawingThread()
         drawingThread.start()
+
+        val navHome = findViewById<LinearLayout>(R.id.nav_home)
+        val navNews = findViewById<LinearLayout>(R.id.nav_news)
+        val navRace = findViewById<LinearLayout>(R.id.nav_race)
+        val navHistory = findViewById<LinearLayout>(R.id.nav_history)
+        val navMore = findViewById<LinearLayout>(R.id.nav_more)
+
+        navHome.setOnClickListener {
+            changeColorAndNavigateWithDelay(navHome, SearchResultActivity::class.java)
+        }
+
+        navNews.setOnClickListener {
+            changeColorAndNavigateWithDelay(navNews, NewsActivity::class.java)
+        }
+
+        navRace.setOnClickListener {
+            changeColorAndNavigateWithDelay(navRace, YouTubeVideosActivity::class.java)
+        }
+
+        navHistory.setOnClickListener {
+            changeColorAndNavigateWithDelay(navHistory, HistoryActivity::class.java)
+        }
+
+        navMore.setOnClickListener {
+            changeColorAndNavigateWithDelay(navMore, MoreActivity::class.java)
+        }
+    }
+
+    fun openSearchResultActivity(view: View) {
+        startActivity(Intent(this, SearchResultActivity::class.java))
+    }
+
+    fun openNewsActivity(view: View) {
+        startActivity(Intent(this, NewsActivity::class.java))
+    }
+
+    fun openYouTubeVideosActivity(view: View) {
+        startActivity(Intent(this, YouTubeVideosActivity::class.java))
+    }
+
+    fun openGreenBackgroundActivity(view: View) {
+        startActivity(Intent(this, QuizActivity::class.java))
+    }
+
+    fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
+        val textViewMap = mapOf(
+            R.id.nav_home to R.id.nav_a,
+            R.id.nav_news to R.id.nav_b,
+            R.id.nav_race to R.id.nav_c,
+            R.id.nav_history to R.id.nav_d,
+            R.id.nav_more to R.id.nav_e
+        )
+
+        for ((parentId, textViewId) in textViewMap) {
+            findViewById<TextView>(textViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
+        }
+
+        val selectedTextViewId = textViewMap[layout.id]
+        findViewById<TextView>(selectedTextViewId!!)?.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, activityClass))
+
+            findViewById<TextView>(selectedTextViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
+        }, delayMillis)
     }
 
     override fun onDestroy() {
@@ -179,12 +258,10 @@ class LoopGameActivity : AppCompatActivity() {
             canvas.drawText("Результат: $score", (canvas.width / 2).toFloat(), (canvas.height / 10).toFloat(), scoreTextPaint)
 
             if (dynamicScoreDisplay.isNotEmpty()) {
-                val dynamicTextPaint = Paint().apply {
-                    color = green
-                    textSize = 60f
-                    textAlign = Paint.Align.CENTER
+                if (dynamicScoreDisplay.isNotEmpty()) {
+                    dynamicScorePaint.alpha = (255 * dynamicScoreAlpha).toInt()
+                    canvas.drawText(dynamicScoreDisplay, (canvas.width / 2).toFloat(), (canvas.height / 2 + dynamicScoreY).toFloat(), dynamicScorePaint)
                 }
-                canvas.drawText(dynamicScoreDisplay, (canvas.width / 2).toFloat(), (canvas.height / 2).toFloat(), dynamicTextPaint)
             }
         }
     }
@@ -224,3 +301,4 @@ class LoopGameActivity : AppCompatActivity() {
         }
     }
 }
+
