@@ -1,98 +1,328 @@
 package com.example.myapplication
 
-import android.animation.ArgbEvaluator
-import android.animation.ValueAnimator
+import android.content.Context
 import android.content.Intent
-import android.graphics.Color
+import android.content.SharedPreferences
+import android.graphics.*
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.os.Handler
+import android.os.Looper
+import android.view.MotionEvent
+import android.view.SurfaceHolder
+import android.view.SurfaceView
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
+import androidx.core.content.ContextCompat
+import kotlin.math.*
 
-data class Game(
-    val imageResId: Int,
-    val description: String,
-    val activityClass: Class<*>
-)
+class LoopGameActivity : AppCompatActivity() {
 
-class GamesActivity : AppCompatActivity() {
+    private val delayMillis: Long = 80 // 60/1000 секунды
+
+    private lateinit var surfaceView: SurfaceView
+    private lateinit var surfaceHolder: SurfaceHolder
+    private lateinit var drawingThread: DrawingThread
+
+    private val circleRadius = 450 // Увеличиваем радиус круга
+    private val circleThickness = 15 // Увеличиваем толщину обводки круга
+
+    private val gray = Color.rgb(169, 169, 169)
+    private val beige = Color.rgb(245, 245, 220)
+    private val darkBeige = Color.rgb(222, 184, 135)
+    private val green = Color.rgb(0, 255, 0)
+    private val red = Color.rgb(255, 0, 0)
+    private val black = Color.rgb(0, 0, 0)
+
+    private val speedOptions = listOf(360 / 3.0, 360 / 2.5, 360 / 2.0, 360 / 1.5)
+    private val arcLengthRange = IntRange(10, 60)
+
+    private var angle = 0.0
+    private var speed = speedOptions.random()
+    private var arcLength = arcLengthRange.random()
+    private var score = 0
+    private var bestScore = 0 // Переменная для хранения лучшего результата
+    private var gameOver = false
+    private var startAngle = (0..(360 - arcLength)).random()
+
+    private lateinit var icon: Bitmap
+    private var dynamicScoreDisplay = ""
+    private var dynamicScoreY = 0f
+    private var dynamicScoreAlpha = 0f
+    private val dynamicScorePaint = Paint().apply {
+        color = Color.GREEN
+        textSize = 70f
+        textAlign = Paint.Align.CENTER
+    }
+
+    private val FPS = 60 // Константа для количества кадров в секунду
+
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_games)
+        setContentView(R.layout.activity_loop_game)
 
-        val games = listOf(
-            Game(R.drawable.photo1, "написать сюда какое нить ебаное описание quizgame", QuizActivity::class.java),
-            Game(R.drawable.photo2, "ебаное описание Memory Game", QuizGameActivity::class.java),
-            Game(R.drawable.photo3, "ебаное описание Loop Game", LoopGameActivity::class.java),
-            Game(R.drawable.photo4, "ебаное описание Reaction Game", ReactionGameActivity::class.java)
-        )
+        sharedPreferences = getSharedPreferences("LoopGamePrefs", Context.MODE_PRIVATE)
+        bestScore = sharedPreferences.getInt("bestScore", 0) // Загрузка лучшего результата
 
-        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
-        viewPager.adapter = GamePagerAdapter(games)
+        val iconDrawable = resources.getDrawable(R.drawable.helmet_icon, null)
+        icon = Bitmap.createBitmap(iconDrawable.intrinsicWidth, iconDrawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(icon)
+        iconDrawable.setBounds(0, 0, canvas.width, canvas.height)
+        iconDrawable.draw(canvas)
+
+        surfaceView = findViewById(R.id.surfaceView)
+        surfaceHolder = surfaceView.holder
+
+        drawingThread = DrawingThread()
+        drawingThread.start()
+
+        val navHome = findViewById<LinearLayout>(R.id.nav_home)
+        val navNews = findViewById<LinearLayout>(R.id.nav_news)
+        val navRace = findViewById<LinearLayout>(R.id.nav_race)
+        val navHistory = findViewById<LinearLayout>(R.id.nav_history)
+        val navMore = findViewById<LinearLayout>(R.id.nav_more)
+
+        navHome.setOnClickListener {
+            changeColorAndNavigateWithDelay(navHome, SearchResultActivity::class.java)
+        }
+
+        navNews.setOnClickListener {
+            changeColorAndNavigateWithDelay(navNews, NewsActivity::class.java)
+        }
+
+        navRace.setOnClickListener {
+            changeColorAndNavigateWithDelay(navRace, YouTubeVideosActivity::class.java)
+        }
+
+        navHistory.setOnClickListener {
+            changeColorAndNavigateWithDelay(navHistory, HistoryActivity::class.java)
+        }
+
+        navMore.setOnClickListener {
+            changeColorAndNavigateWithDelay(navMore, MoreActivity::class.java)
+        }
     }
 
-    inner class GamePagerAdapter(
-        private val games: List<Game>
-    ) : RecyclerView.Adapter<GamePagerAdapter.GameViewHolder>() {
+    fun openSearchResultActivity(view: View) {
+        startActivity(Intent(this, SearchResultActivity::class.java))
+    }
 
-        inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val gameImage: ImageView = itemView.findViewById(R.id.game_image)
-            val gameDescription: TextView = itemView.findViewById(R.id.game_description)
-            val playButton: Button = itemView.findViewById(R.id.play_button)
-            val gameContainer: View = itemView.findViewById(R.id.game_container)
+    fun openNewsActivity(view: View) {
+        startActivity(Intent(this, NewsActivity::class.java))
+    }
+
+    fun openYouTubeVideosActivity(view: View) {
+        startActivity(Intent(this, YouTubeVideosActivity::class.java))
+    }
+
+    fun openGreenBackgroundActivity(view: View) {
+        startActivity(Intent(this, QuizActivity::class.java))
+    }
+
+    fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
+        val textViewMap = mapOf(
+            R.id.nav_home to R.id.nav_a,
+            R.id.nav_news to R.id.nav_b,
+            R.id.nav_race to R.id.nav_c,
+            R.id.nav_history to R.id.nav_d,
+            R.id.nav_more to R.id.nav_e
+        )
+
+        for ((parentId, textViewId) in textViewMap) {
+            findViewById<TextView>(textViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
-            return GameViewHolder(view)
+        val selectedTextViewId = textViewMap[layout.id]
+        findViewById<TextView>(selectedTextViewId!!)?.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, activityClass))
+
+            findViewById<TextView>(selectedTextViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
+        }, delayMillis)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        drawingThread.stopThread()
+    }
+
+    private inner class DrawingThread : Thread() {
+        private var running = false
+        private var targetScore = score
+        private val handler = Handler(Looper.getMainLooper())
+
+        fun stopThread() {
+            running = false
         }
 
-        override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
-            val game = games[position]
-            holder.gameImage.setImageResource(game.imageResId)
-            holder.gameDescription.text = game.description
-            holder.playButton.setOnClickListener {
-                val intent = Intent(this@GamesActivity, game.activityClass)
-                startActivity(intent)
+        override fun run() {
+            running = true
+            while (running) {
+                val canvas = surfaceHolder.lockCanvas()
+                if (canvas != null) {
+                    draw(canvas)
+                    surfaceHolder.unlockCanvasAndPost(canvas)
+                }
+                try {
+                    sleep((1000 / FPS).toLong())
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
+        private fun draw(canvas: Canvas) {
+            canvas.drawColor(Color.WHITE)
+
+            if (!gameOver) {
+                val centerX = canvas.width / 2
+                val centerY = canvas.height / 2
+
+                val outerRadius = circleRadius + circleThickness
+                val innerRadius = circleRadius - circleThickness
+
+                val grayPaint = Paint().apply {
+                    style = Paint.Style.STROKE
+                    color = gray
+                    strokeWidth = circleThickness.toFloat()
+                }
+                canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), circleRadius.toFloat(), grayPaint)
+
+                val beigePaint = Paint().apply {
+                    style = Paint.Style.FILL
+                    color = beige
+                }
+                canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), (circleRadius - circleThickness).toFloat(), beigePaint)
+
+                val startAngleRad = Math.toRadians(startAngle.toDouble())
+                val arcLengthRad = Math.toRadians(arcLength.toDouble())
+                val endAngleRad = startAngleRad + arcLengthRad
+
+                val borderPaint = Paint().apply {
+                    style = Paint.Style.FILL
+                    color = darkBeige
+                }
+
+                val path = Path()
+
+                val trianglePoints = mutableListOf<PointF>()
+                trianglePoints.add(PointF(centerX.toFloat(), centerY.toFloat()))
+
+                val startX = centerX + (outerRadius * cos(startAngleRad)).toFloat()
+                val startY = centerY - (outerRadius * sin(startAngleRad)).toFloat()
+                trianglePoints.add(PointF(startX, startY))
+
+                val endX = centerX + (outerRadius * cos(endAngleRad)).toFloat()
+                val endY = centerY - (outerRadius * sin(endAngleRad)).toFloat()
+                trianglePoints.add(PointF(endX, endY))
+
+                path.moveTo(trianglePoints[0].x, trianglePoints[0].y)
+                path.lineTo(trianglePoints[1].x, trianglePoints[1].y)
+                path.lineTo(trianglePoints[2].x, trianglePoints[2].y)
+                path.lineTo(trianglePoints[0].x, trianglePoints[0].y)
+                path.close()
+
+                canvas.drawPath(path, borderPaint)
+
+                val iconWidth = icon.width.toFloat()
+                val iconHeight = icon.height.toFloat()
+                val angleRad = Math.toRadians(angle)
+                val xIcon = centerX + (innerRadius * cos(angleRad)).toInt() - (iconWidth / 2)
+                val yIcon = centerY - (innerRadius * sin(angleRad)).toInt() - (iconHeight / 2)
+                canvas.drawBitmap(icon, xIcon.toFloat(), yIcon.toFloat(), null)
+
+                val previousAngle = angle
+                angle = (angle + speed / FPS) % 360
+
+                if (previousAngle > angle) {
+                    resetZoneAndSpeed()
+                }
+
+                if (targetScore != score) {
+                    targetScore = score
+                    dynamicScoreDisplay = "+1"
+                    handler.postDelayed({
+                        dynamicScoreDisplay = ""
+                    }, 500)
+                }
+            } else {
+                val textPaint = Paint().apply {
+                    color = red
+                    textSize = 75f
+                    textAlign = Paint.Align.CENTER
+                }
+                canvas.drawText("ХА! лох", (canvas.width / 2).toFloat(), (canvas.height / 2).toFloat(), textPaint)
             }
 
-            val backgroundColor = when (position) {
-                0 -> android.R.color.holo_purple
-                1 -> android.R.color.holo_orange_dark
-                2 -> android.R.color.darker_gray
-                3 -> android.R.color.holo_blue_dark
-                else -> android.R.color.white
+            val scoreTextPaint = Paint().apply {
+                color = black
+                textSize = 70f
+                textAlign = Paint.Align.CENTER
             }
-            holder.itemView.setBackgroundColor(resources.getColor(backgroundColor, null))
+            canvas.drawText("Результат: $score", (canvas.width / 2).toFloat(), (canvas.height / 10).toFloat(), scoreTextPaint)
 
-            val colorAnimation = ValueAnimator.ofObject(
-                ArgbEvaluator(),
-                Color.parseColor("#FFCDD2"), // пастельный розовый
-                Color.parseColor("#F5E0C3"), // пастельный бежевый
-                Color.parseColor("#D3B88C"), // темно-бежевый
-                Color.parseColor("#D1C4E9")  // пастельный фиолетовый
-            )
+            // Отображение лучшего результата
+            canvas.drawText("Лучший результат: $bestScore", (canvas.width / 2).toFloat(), (canvas.height / 5).toFloat(), scoreTextPaint)
 
-            colorAnimation.duration = 5000 // 3 секунды
-            colorAnimation.repeatCount = ValueAnimator.INFINITE
-            colorAnimation.repeatMode = ValueAnimator.REVERSE
-
-            colorAnimation.addUpdateListener { animator ->
-                holder.gameContainer.setBackgroundColor(animator.animatedValue as Int)
+            if (dynamicScoreDisplay.isNotEmpty()) {
+                if (dynamicScoreDisplay.isNotEmpty()) {
+                    dynamicScorePaint.alpha = (255 * dynamicScoreAlpha).toInt()
+                    canvas.drawText(dynamicScoreDisplay, (canvas.width / 2).toFloat(), (canvas.height / 2 + dynamicScoreY).toFloat(), dynamicScorePaint)
+                }
             }
-
-            colorAnimation.start()
         }
+    }
 
-        override fun getItemCount(): Int {
-            return games.size
+    private fun resetZoneAndSpeed() {
+        startAngle = (0..(360 - arcLength)).random()
+        speed = speedOptions.random()
+        arcLength = arcLengthRange.random()
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if (event?.action == MotionEvent.ACTION_DOWN && !gameOver) {
+            checkClick(surfaceView.width / 2, surfaceView.height / 2, angle, startAngle, arcLength)
         }
+        return super.onTouchEvent(event)
+    }
+
+    private fun checkClick(centerX: Int, centerY: Int, angle: Double, startAngle: Int, arcLength: Int) {
+        var currentAngle = angle % 360
+        var startAngle = startAngle % 360
+        var endAngle = (startAngle + arcLength) % 360
+
+        if (startAngle < endAngle) {
+            if (startAngle <= currentAngle && currentAngle <= endAngle) {
+                score++
+                if (score > bestScore) {
+                    bestScore = score
+                    saveBestScore(bestScore)
+                }
+                resetZoneAndSpeed()
+            } else {
+                gameOver = true
+            }
+        } else {
+            if (currentAngle >= startAngle || currentAngle <= endAngle) {
+                score++
+                if (score > bestScore) {
+                    bestScore = score
+                    saveBestScore(bestScore)
+                }
+                resetZoneAndSpeed()
+            } else {
+                gameOver = true
+            }
+        }
+    }
+
+    private fun saveBestScore(bestScore: Int) {
+        val editor = sharedPreferences.edit()
+        editor.putInt("bestScore", bestScore)
+        editor.apply()
     }
 }
