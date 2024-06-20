@@ -1,6 +1,8 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.*
 import android.os.Bundle
 import android.os.Handler
@@ -40,6 +42,7 @@ class LoopGameActivity : AppCompatActivity() {
     private var speed = speedOptions.random()
     private var arcLength = arcLengthRange.random()
     private var score = 0
+    private var bestScore = 0 // Переменная для хранения лучшего результата
     private var gameOver = false
     private var startAngle = (0..(360 - arcLength)).random()
 
@@ -55,9 +58,14 @@ class LoopGameActivity : AppCompatActivity() {
 
     private val FPS = 60 // Константа для количества кадров в секунду
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loop_game)
+
+        sharedPreferences = getSharedPreferences("LoopGamePrefs", Context.MODE_PRIVATE)
+        bestScore = sharedPreferences.getInt("bestScore", 0) // Загрузка лучшего результата
 
         val iconDrawable = resources.getDrawable(R.drawable.helmet_icon, null)
         icon = Bitmap.createBitmap(iconDrawable.intrinsicWidth, iconDrawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
@@ -257,6 +265,9 @@ class LoopGameActivity : AppCompatActivity() {
             }
             canvas.drawText("Результат: $score", (canvas.width / 2).toFloat(), (canvas.height / 10).toFloat(), scoreTextPaint)
 
+            // Отображение лучшего результата
+            canvas.drawText("Лучший результат: $bestScore", (canvas.width / 2).toFloat(), (canvas.height / 5).toFloat(), scoreTextPaint)
+
             if (dynamicScoreDisplay.isNotEmpty()) {
                 if (dynamicScoreDisplay.isNotEmpty()) {
                     dynamicScorePaint.alpha = (255 * dynamicScoreAlpha).toInt()
@@ -287,6 +298,10 @@ class LoopGameActivity : AppCompatActivity() {
         if (startAngle < endAngle) {
             if (startAngle <= currentAngle && currentAngle <= endAngle) {
                 score++
+                if (score > bestScore) {
+                    bestScore = score
+                    saveBestScore(bestScore)
+                }
                 resetZoneAndSpeed()
             } else {
                 gameOver = true
@@ -294,11 +309,20 @@ class LoopGameActivity : AppCompatActivity() {
         } else {
             if (currentAngle >= startAngle || currentAngle <= endAngle) {
                 score++
+                if (score > bestScore) {
+                    bestScore = score
+                    saveBestScore(bestScore)
+                }
                 resetZoneAndSpeed()
             } else {
                 gameOver = true
             }
         }
     }
-}
 
+    private fun saveBestScore(bestScore: Int) {
+        val editor = sharedPreferences.edit()
+        editor.putInt("bestScore", bestScore)
+        editor.apply()
+    }
+}
