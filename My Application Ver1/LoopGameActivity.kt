@@ -190,13 +190,23 @@ class LoopGameActivity : AppCompatActivity() {
                     color = gray
                     strokeWidth = circleThickness.toFloat()
                 }
-                canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), circleRadius.toFloat(), grayPaint)
+                canvas.drawCircle(
+                    centerX.toFloat(),
+                    centerY.toFloat(),
+                    circleRadius.toFloat(),
+                    grayPaint
+                )
 
                 val beigePaint = Paint().apply {
                     style = Paint.Style.FILL
                     color = beige
                 }
-                canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), (circleRadius - circleThickness).toFloat(), beigePaint)
+                canvas.drawCircle(
+                    centerX.toFloat(),
+                    centerY.toFloat(),
+                    (circleRadius - circleThickness).toFloat(),
+                    beigePaint
+                )
 
                 val startAngleRad = Math.toRadians(startAngle.toDouble())
                 val arcLengthRad = Math.toRadians(arcLength.toDouble())
@@ -208,24 +218,22 @@ class LoopGameActivity : AppCompatActivity() {
                 }
 
                 val path = Path()
-
-                val trianglePoints = mutableListOf<PointF>()
-                trianglePoints.add(PointF(centerX.toFloat(), centerY.toFloat()))
+                path.moveTo(centerX.toFloat(), centerY.toFloat())
 
                 val startX = centerX + (outerRadius * cos(startAngleRad)).toFloat()
                 val startY = centerY - (outerRadius * sin(startAngleRad)).toFloat()
-                trianglePoints.add(PointF(startX, startY))
+                path.lineTo(startX, startY)
 
-                val endX = centerX + (outerRadius * cos(endAngleRad)).toFloat()
-                val endY = centerY - (outerRadius * sin(endAngleRad)).toFloat()
-                trianglePoints.add(PointF(endX, endY))
+                val rectF = RectF(
+                    (centerX - outerRadius).toFloat(),
+                    (centerY - outerRadius).toFloat(),
+                    (centerX + outerRadius).toFloat(),
+                    (centerY + outerRadius).toFloat()
+                )
 
-                path.moveTo(trianglePoints[0].x, trianglePoints[0].y)
-                path.lineTo(trianglePoints[1].x, trianglePoints[1].y)
-                path.lineTo(trianglePoints[2].x, trianglePoints[2].y)
-                path.lineTo(trianglePoints[0].x, trianglePoints[0].y)
+                path.arcTo(rectF, -startAngle.toFloat(), -arcLength.toFloat())
+
                 path.close()
-
                 canvas.drawPath(path, borderPaint)
 
                 val iconWidth = icon.width.toFloat()
@@ -255,7 +263,12 @@ class LoopGameActivity : AppCompatActivity() {
                     textSize = 75f
                     textAlign = Paint.Align.CENTER
                 }
-                canvas.drawText("ХА! лох", (canvas.width / 2).toFloat(), (canvas.height / 2).toFloat(), textPaint)
+                canvas.drawText(
+                    "ХА! лох",
+                    (canvas.width / 2).toFloat(),
+                    (canvas.height / 2).toFloat(),
+                    textPaint
+                )
             }
 
             val scoreTextPaint = Paint().apply {
@@ -263,16 +276,29 @@ class LoopGameActivity : AppCompatActivity() {
                 textSize = 70f
                 textAlign = Paint.Align.CENTER
             }
-            canvas.drawText("Результат: $score", (canvas.width / 2).toFloat(), (canvas.height / 10).toFloat(), scoreTextPaint)
+            canvas.drawText(
+                "Результат: $score",
+                (canvas.width / 2).toFloat(),
+                (canvas.height / 10).toFloat(),
+                scoreTextPaint
+            )
 
             // Отображение лучшего результата
-            canvas.drawText("Лучший результат: $bestScore", (canvas.width / 2).toFloat(), (canvas.height / 5).toFloat(), scoreTextPaint)
+            canvas.drawText(
+                "Лучший результат: $bestScore",
+                (canvas.width / 2).toFloat(),
+                (canvas.height / 5).toFloat(),
+                scoreTextPaint
+            )
 
             if (dynamicScoreDisplay.isNotEmpty()) {
-                if (dynamicScoreDisplay.isNotEmpty()) {
-                    dynamicScorePaint.alpha = (255 * dynamicScoreAlpha).toInt()
-                    canvas.drawText(dynamicScoreDisplay, (canvas.width / 2).toFloat(), (canvas.height / 2 + dynamicScoreY).toFloat(), dynamicScorePaint)
-                }
+                dynamicScorePaint.alpha = (255 * dynamicScoreAlpha).toInt()
+                canvas.drawText(
+                    dynamicScoreDisplay,
+                    (canvas.width / 2).toFloat(),
+                    (canvas.height / 2 + dynamicScoreY).toFloat(),
+                    dynamicScorePaint
+                )
             }
         }
     }
