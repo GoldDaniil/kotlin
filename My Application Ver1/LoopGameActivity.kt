@@ -150,6 +150,19 @@ class LoopGameActivity : AppCompatActivity() {
         drawingThread.stopThread()
     }
 
+    private val buttonPaint = Paint().apply {
+        color = Color.LTGRAY
+        style = Paint.Style.FILL
+    }
+
+    private val buttonTextPaint = Paint().apply {
+        color = Color.BLACK
+        textSize = 50f
+        textAlign = Paint.Align.CENTER
+    }
+
+    private val buttonRect = RectF()
+
     private inner class DrawingThread : Thread() {
         private var running = false
         private var targetScore = score
@@ -190,23 +203,13 @@ class LoopGameActivity : AppCompatActivity() {
                     color = gray
                     strokeWidth = circleThickness.toFloat()
                 }
-                canvas.drawCircle(
-                    centerX.toFloat(),
-                    centerY.toFloat(),
-                    circleRadius.toFloat(),
-                    grayPaint
-                )
+                canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), circleRadius.toFloat(), grayPaint)
 
                 val beigePaint = Paint().apply {
                     style = Paint.Style.FILL
                     color = beige
                 }
-                canvas.drawCircle(
-                    centerX.toFloat(),
-                    centerY.toFloat(),
-                    (circleRadius - circleThickness).toFloat(),
-                    beigePaint
-                )
+                canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), (circleRadius - circleThickness).toFloat(), beigePaint)
 
                 val startAngleRad = Math.toRadians(startAngle.toDouble())
                 val arcLengthRad = Math.toRadians(arcLength.toDouble())
@@ -263,12 +266,17 @@ class LoopGameActivity : AppCompatActivity() {
                     textSize = 75f
                     textAlign = Paint.Align.CENTER
                 }
-                canvas.drawText(
-                    "ХА! лох",
-                    (canvas.width / 2).toFloat(),
-                    (canvas.height / 2).toFloat(),
-                    textPaint
-                )
+                canvas.drawText("ХА! лох", (canvas.width / 2).toFloat(), (canvas.height / 2).toFloat(), textPaint)
+
+                // Отображение кнопки "Сыграть еще раз?"
+                val buttonWidth = 600
+                val buttonHeight = 100
+                val buttonX = (canvas.width / 2) - (buttonWidth / 2)
+                val buttonY = (canvas.height / 2) + 100
+
+                buttonRect.set(buttonX.toFloat(), buttonY.toFloat(), (buttonX + buttonWidth).toFloat(), (buttonY + buttonHeight).toFloat())
+                canvas.drawRoundRect(buttonRect, 20f, 20f, buttonPaint)
+                canvas.drawText("Сыграть еще раз?", buttonRect.centerX(), buttonRect.centerY() + 20f, buttonTextPaint)
             }
 
             val scoreTextPaint = Paint().apply {
@@ -276,29 +284,14 @@ class LoopGameActivity : AppCompatActivity() {
                 textSize = 70f
                 textAlign = Paint.Align.CENTER
             }
-            canvas.drawText(
-                "Результат: $score",
-                (canvas.width / 2).toFloat(),
-                (canvas.height / 10).toFloat(),
-                scoreTextPaint
-            )
+            canvas.drawText("Результат: $score", (canvas.width / 2).toFloat(), (canvas.height / 10).toFloat(), scoreTextPaint)
 
             // Отображение лучшего результата
-            canvas.drawText(
-                "Лучший результат: $bestScore",
-                (canvas.width / 2).toFloat(),
-                (canvas.height / 5).toFloat(),
-                scoreTextPaint
-            )
+            canvas.drawText("Лучший результат: $bestScore", (canvas.width / 2).toFloat(), (canvas.height / 5).toFloat(), scoreTextPaint)
 
             if (dynamicScoreDisplay.isNotEmpty()) {
                 dynamicScorePaint.alpha = (255 * dynamicScoreAlpha).toInt()
-                canvas.drawText(
-                    dynamicScoreDisplay,
-                    (canvas.width / 2).toFloat(),
-                    (canvas.height / 2 + dynamicScoreY).toFloat(),
-                    dynamicScorePaint
-                )
+                canvas.drawText(dynamicScoreDisplay, (canvas.width / 2).toFloat(), (canvas.height / 2 + dynamicScoreY).toFloat(), dynamicScorePaint)
             }
         }
     }
@@ -310,10 +303,26 @@ class LoopGameActivity : AppCompatActivity() {
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        if (event?.action == MotionEvent.ACTION_DOWN && !gameOver) {
-            checkClick(surfaceView.width / 2, surfaceView.height / 2, angle, startAngle, arcLength)
+        if (event?.action == MotionEvent.ACTION_DOWN) {
+            if (gameOver) {
+                // Проверка попадания нажатия на область кнопки "Сыграть еще раз?"
+                if (buttonRect.contains(event.x, event.y)) {
+                    restartGame()
+                }
+            } else {
+                checkClick(surfaceView.width / 2, surfaceView.height / 2, angle, startAngle, arcLength)
+            }
         }
         return super.onTouchEvent(event)
+    }
+
+    private fun restartGame() {
+        score = 0
+        gameOver = false
+        angle = 0.0
+        speed = speedOptions.random()
+        arcLength = arcLengthRange.random()
+        startAngle = (0..(360 - arcLength)).random()
     }
 
     private fun checkClick(centerX: Int, centerY: Int, angle: Double, startAngle: Int, arcLength: Int) {
