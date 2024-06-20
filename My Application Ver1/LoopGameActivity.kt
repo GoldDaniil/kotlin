@@ -16,10 +16,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlin.math.*
+import android.media.MediaPlayer
 
 class LoopGameActivity : AppCompatActivity() {
 
     private val delayMillis: Long = 80 // 60/1000 секунды
+
+    private var mediaPlayer: MediaPlayer? = null
 
     private lateinit var surfaceView: SurfaceView
     private lateinit var surfaceHolder: SurfaceHolder
@@ -63,6 +66,8 @@ class LoopGameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loop_game)
+
+        val rawResourceId = R.raw.marimba_odinochnyiy
 
         sharedPreferences = getSharedPreferences("LoopGamePrefs", Context.MODE_PRIVATE)
         bestScore = sharedPreferences.getInt("bestScore", 0) // Загрузка лучшего результата
@@ -143,11 +148,6 @@ class LoopGameActivity : AppCompatActivity() {
 
             findViewById<TextView>(selectedTextViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
         }, delayMillis)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        drawingThread.stopThread()
     }
 
     private val buttonPaint = Paint().apply {
@@ -330,29 +330,37 @@ class LoopGameActivity : AppCompatActivity() {
         var startAngle = startAngle % 360
         var endAngle = (startAngle + arcLength) % 360
 
+        val isSuccessfulClick: Boolean
+
         if (startAngle < endAngle) {
-            if (startAngle <= currentAngle && currentAngle <= endAngle) {
-                score++
-                if (score > bestScore) {
-                    bestScore = score
-                    saveBestScore(bestScore)
-                }
-                resetZoneAndSpeed()
-            } else {
-                gameOver = true
-            }
+            isSuccessfulClick = startAngle <= currentAngle && currentAngle <= endAngle
         } else {
-            if (currentAngle >= startAngle || currentAngle <= endAngle) {
-                score++
-                if (score > bestScore) {
-                    bestScore = score
-                    saveBestScore(bestScore)
-                }
-                resetZoneAndSpeed()
-            } else {
-                gameOver = true
-            }
+            isSuccessfulClick = currentAngle >= startAngle || currentAngle <= endAngle
         }
+
+        if (isSuccessfulClick) {
+            score++
+            playSound()
+            if (score > bestScore) {
+                bestScore = score
+                saveBestScore(bestScore)
+            }
+            resetZoneAndSpeed()
+        } else {
+            gameOver = true
+        }
+    }
+
+    private fun playSound() {
+        mediaPlayer?.release()
+        mediaPlayer = MediaPlayer.create(this, R.raw.marimba_odinochnyiy)
+        mediaPlayer?.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
     private fun saveBestScore(bestScore: Int) {
