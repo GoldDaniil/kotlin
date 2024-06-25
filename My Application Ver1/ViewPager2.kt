@@ -1,0 +1,30 @@
+package com.example.myapplication
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+
+class ViewPager2 : RecyclerView.Adapter<ViewPager2.ViewHolder>() {
+
+    private val layouts = listOf(
+        R.layout.block_layout_1,
+        R.layout.block_layout_2,
+        R.layout.block_layout_3
+    )
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        // настройка представлений внутри блока 
+    }
+
+    override fun getItemCount(): Int = layouts.size
+
+    override fun getItemViewType(position: Int): Int = layouts[position]
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+}
