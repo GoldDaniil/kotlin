@@ -19,7 +19,7 @@ class ViewPager2 : RecyclerView.Adapter<ViewPager2.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // настройка представлений внутри блока 
+        // настройка представлений внутри блока
     }
 
     override fun getItemCount(): Int = layouts.size
