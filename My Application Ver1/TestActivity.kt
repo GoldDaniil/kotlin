@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.content.Intent
-import android.view.View
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +16,9 @@ class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
+
+        val viewPager = findViewById<ViewPager2>(R.id.viewPager)
+        viewPager.adapter = ViewPager2()
 
         val navHome = findViewById<LinearLayout>(R.id.nav_home)
         val navNews = findViewById<LinearLayout>(R.id.nav_news)
@@ -46,23 +46,8 @@ class TestActivity : AppCompatActivity() {
             changeColorAndNavigateWithDelay(navMore, MoreActivity::class.java)
         }
     }
-    fun openSearchResultActivity(view: View) {
-        startActivity(Intent(this, SearchResultActivity::class.java))
-    }
 
-    fun openNewsActivity(view: View) {
-        startActivity(Intent(this, NewsActivity::class.java))
-    }
-
-    fun openYouTubeVideosActivity(view: View) {
-        startActivity(Intent(this, YouTubeVideosActivity::class.java))
-    }
-
-    fun openGreenBackgroundActivity(view: View) {
-        startActivity(Intent(this, QuizActivity::class.java))
-    }
-
-    fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
+     fun changeColorAndNavigateWithDelay(layout: LinearLayout, activityClass: Class<*>) {
         val textViewMap = mapOf(
             R.id.nav_home to R.id.nav_a,
             R.id.nav_news to R.id.nav_b,
@@ -84,5 +69,4 @@ class TestActivity : AppCompatActivity() {
             findViewById<TextView>(selectedTextViewId)?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
         }, delayMillis)
     }
-
 }
