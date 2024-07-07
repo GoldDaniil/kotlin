@@ -18,38 +18,38 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="32dp"
-
+                android:id="@+id/icon_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="20dp"
                 android:src="@drawable/iconshome" />
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="32dp"
-
+                android:id="@+id/icon_2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="20dp"
                 android:src="@drawable/iconshome" />
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="32dp"
-
+                android:id="@+id/icon_3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="20dp"
                 android:src="@drawable/iconshome" />
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="32dp"
-
+                android:id="@+id/icon_4"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="20dp"
                 android:src="@drawable/iconshome" />
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="32dp"
-
+                android:id="@+id/icon_5"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="20dp"
                 android:src="@drawable/iconshome" />
         </LinearLayout>
     </HorizontalScrollView>
@@ -83,8 +83,8 @@
 
             <ImageView
                 android:id="@+id/icon_a"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/iconshome"/>
 
             <TextView
@@ -108,8 +108,8 @@
 
             <ImageView
                 android:id="@+id/icon_b"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/iconsnews"/>
 
             <TextView
@@ -133,8 +133,8 @@
 
             <ImageView
                 android:id="@+id/icon_c"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/iconsflag"/>
 
             <TextView
@@ -158,8 +158,8 @@
 
             <ImageView
                 android:id="@+id/icon_d"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/iconshistory"/>
 
             <TextView
@@ -183,8 +183,8 @@
 
             <ImageView
                 android:id="@+id/icon_e"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/iconsmore"/>
 
             <TextView
