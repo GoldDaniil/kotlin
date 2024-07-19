@@ -19,37 +19,37 @@
 
             <ImageView
                 android:id="@+id/icon_1"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="20dp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_margin="27dp"
                 android:src="@drawable/iconshome" />
 
             <ImageView
                 android:id="@+id/icon_2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="20dp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_margin="27dp"
                 android:src="@drawable/iconshome" />
 
             <ImageView
                 android:id="@+id/icon_3"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="20dp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_margin="27dp"
                 android:src="@drawable/iconshome" />
 
             <ImageView
                 android:id="@+id/icon_4"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="20dp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_margin="27dp"
                 android:src="@drawable/iconshome" />
 
             <ImageView
                 android:id="@+id/icon_5"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="20dp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_margin="27dp"
                 android:src="@drawable/iconshome" />
         </LinearLayout>
     </HorizontalScrollView>
