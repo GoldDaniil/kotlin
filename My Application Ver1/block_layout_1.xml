@@ -2,14 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/background_image_main_bull">
+    android:padding="16dp"
+    android:background="@drawable/background_image_main_bull"
+    android:gravity="center">
 
+    <!-- Заголовок -->
     <TextView
+        android:id="@+id/quiz_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Блок 1"
-        android:textSize="24sp"/>
+        android:text="Квиз"
+        android:textSize="32sp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="24dp"/>
 
+    <!-- Первая кнопка для игры Квиз -->
+    <Button
+        android:id="@+id/button_quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Играть"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:textColor="@android:color/white"
+        android:padding="12dp"/>
+
+    <!-- Вторая кнопка для игры Квиз/Фото -->
+    <Button
+        android:id="@+id/button_quiz_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Квиз/Фото"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:textColor="@android:color/white"
+        android:padding="12dp"/>
 </LinearLayout>
