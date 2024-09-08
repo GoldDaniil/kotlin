@@ -2,6 +2,7 @@ package com.example.goldsecure
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -57,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
                         captchaEditText.visibility = android.view.View.VISIBLE
                         generateCaptcha()
                     }
-                    Toast.makeText(this, "Invalid credentials or CAPTCHA. Try again.", Toast.LENGTH_SHORT).show()
+                    showErrorMessage()
                 } else {
                     Toast.makeText(this, "Too many failed attempts. Please try again later.", Toast.LENGTH_LONG).show()
                     loginButton.isEnabled = false
@@ -77,6 +78,12 @@ class LoginActivity : AppCompatActivity() {
     private fun generateCaptcha() {
         currentCaptcha = generateRandomCaptcha()
         captchaTextView.text = currentCaptcha
+        captchaTextView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in))
+    }
+
+    private fun showErrorMessage() {
+        Toast.makeText(this, "Invalid credentials or CAPTCHA. Try again.", Toast.LENGTH_SHORT).show()
+        captchaTextView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_out))
     }
 
     private fun generateRandomCaptcha(): String {
