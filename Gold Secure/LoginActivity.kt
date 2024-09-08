@@ -32,7 +32,10 @@ class LoginActivity : AppCompatActivity() {
         loginButton = findViewById(R.id.login_button)
         attemptsTextView = findViewById(R.id.attempts_text_view)
 
-        generateCaptcha()
+        // Скрыть капчу и количество попыток до первой ошибки
+        captchaTextView.visibility = android.view.View.GONE
+        captchaEditText.visibility = android.view.View.GONE
+        attemptsTextView.visibility = android.view.View.GONE
 
         loginButton.setOnClickListener {
             val login = loginEditText.text.toString()
@@ -48,7 +51,12 @@ class LoginActivity : AppCompatActivity() {
                     attemptsLeft--
                     attemptsTextView.text = "Attempts left: $attemptsLeft"
                     attemptsTextView.visibility = android.view.View.VISIBLE
-                    generateCaptcha()
+                    // Показать капчу только после первой неудачной попытки
+                    if (attemptsLeft < 3) {
+                        captchaTextView.visibility = android.view.View.VISIBLE
+                        captchaEditText.visibility = android.view.View.VISIBLE
+                        generateCaptcha()
+                    }
                     Toast.makeText(this, "Invalid credentials or CAPTCHA. Try again.", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "Too many failed attempts. Please try again later.", Toast.LENGTH_LONG).show()
