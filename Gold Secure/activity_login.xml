@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/login_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Login" />
+
+    <EditText
+        android:id="@+id/password_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_below="@id/login_edit_text"
+        android:layout_marginTop="16dp"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/captcha_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_edit_text"
+        android:layout_marginTop="16dp"
+        android:text="CAPTCHA" />
+
+    <EditText
+        android:id="@+id/captcha_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/captcha_text_view"
+        android:layout_marginTop="8dp"
+        android:hint="Enter CAPTCHA" />
+
+    <TextView
+        android:id="@+id/attempts_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/captcha_edit_text"
+        android:layout_marginTop="8dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/attempts_text_view"
+        android:layout_marginTop="16dp"
+        android:text="Login" />
+
+</RelativeLayout>
