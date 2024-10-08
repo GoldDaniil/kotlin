@@ -22,29 +22,28 @@ class NoteActivity : AppCompatActivity() {
         etNoteContent = findViewById(R.id.etNoteContent)
         btnExit = findViewById(R.id.btnExit)
 
-        // Чтение файла и загрузка его в EditText
+        //чтение файла и загрузка его в EditText
         readFileContent()
 
-        // Установка слушателя на кнопку выхода
+        //установка слушателя на кнопку выхода
         btnExit.setOnClickListener {
-            finish() // Закрыть активность
+            finish() //закрыть активность
         }
     }
 
-    // Метод для чтения файла и отображения содержимого в EditText
+    //метод для чтения файла и отображения содержимого в EditText
     private fun readFileContent() {
         try {
-            // Открываем файл из папки assets
+            //открываем файл из папки assets
             val inputStream = assets.open("sample.txt")
             val reader = BufferedReader(InputStreamReader(inputStream))
 
-            // Чтение содержимого файла
+            //читаем содержимого файла
             val content = reader.use { it.readText() }
 
-            // Закрытие потока чтения
             reader.close()
 
-            // Установка текста в EditText для редактирования
+            //установка текста в textedit для редактирования
             etNoteContent.setText(content)
 
         } catch (e: IOException) {
