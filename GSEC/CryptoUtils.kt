@@ -37,7 +37,6 @@ object CryptoUtils {
         return String(decrypted, Charsets.UTF_8)
     }
 
-    // You can store the key securely or generate a new one if needed
     fun getKeyString(): String {
         val key = generateKey()
         return Base64.encodeToString(key.encoded, Base64.DEFAULT)
