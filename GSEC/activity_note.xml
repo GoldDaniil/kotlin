@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".NoteActivity">
 
-    <!-- Кнопка выхода -->
+    <!--кнопка выхода-->
     <Button
         android:id="@+id/btnExit"
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Поле для редактирования текста -->
+    <!--поле для редактирования текста-->
     <EditText
         android:id="@+id/etNoteContent"
         android:layout_width="0dp"
