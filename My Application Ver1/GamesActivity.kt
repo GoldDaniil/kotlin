@@ -25,8 +25,8 @@ class LoopGameActivity : AppCompatActivity() {
     private lateinit var surfaceHolder: SurfaceHolder
     private lateinit var drawingThread: DrawingThread
 
-    private val circleRadius = 450 // Увеличиваем радиус круга
-    private val circleThickness = 15 // Увеличиваем толщину обводки круга
+    private val circleRadius = 450 //радиус круга
+    private val circleThickness = 15 //толщина обводки круга
 
     private val gray = Color.rgb(169, 169, 169)
     private val beige = Color.rgb(245, 245, 220)
@@ -42,7 +42,7 @@ class LoopGameActivity : AppCompatActivity() {
     private var speed = speedOptions.random()
     private var arcLength = arcLengthRange.random()
     private var score = 0
-    private var bestScore = 0 // Переменная для хранения лучшего результата
+    private var bestScore = 0 //переменная для хранения лучшего результата
     private var gameOver = false
     private var startAngle = (0..(360 - arcLength)).random()
 
@@ -56,7 +56,7 @@ class LoopGameActivity : AppCompatActivity() {
         textAlign = Paint.Align.CENTER
     }
 
-    private val FPS = 60 // Константа для количества кадров в секунду
+    private val FPS = 60 //константа для количества кадров в секунду
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -65,7 +65,7 @@ class LoopGameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_loop_game)
 
         sharedPreferences = getSharedPreferences("LoopGamePrefs", Context.MODE_PRIVATE)
-        bestScore = sharedPreferences.getInt("bestScore", 0) // Загрузка лучшего результата
+        bestScore = sharedPreferences.getInt("bestScore", 0) //загрузка лучшего результата
 
         val iconDrawable = resources.getDrawable(R.drawable.helmet_icon, null)
         icon = Bitmap.createBitmap(iconDrawable.intrinsicWidth, iconDrawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
@@ -265,7 +265,7 @@ class LoopGameActivity : AppCompatActivity() {
             }
             canvas.drawText("Результат: $score", (canvas.width / 2).toFloat(), (canvas.height / 10).toFloat(), scoreTextPaint)
 
-            // Отображение лучшего результата
+            //отображение лучшего результата
             canvas.drawText("Лучший результат: $bestScore", (canvas.width / 2).toFloat(), (canvas.height / 5).toFloat(), scoreTextPaint)
 
             if (dynamicScoreDisplay.isNotEmpty()) {
