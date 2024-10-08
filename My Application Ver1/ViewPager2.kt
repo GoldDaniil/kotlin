@@ -21,7 +21,7 @@ class ViewPager2 : RecyclerView.Adapter<ViewPager2.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // Обработка первой страницы
+        //обработка первой страницы
         if (position == 0) {
             val context = holder.itemView.context
             val buttonQuiz = holder.itemView.findViewById<Button>(R.id.button_quiz)
