@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <!-- Заголовок -->
+    <!-- заголовок -->
     <TextView
         android:id="@+id/tvDashboardTitle"
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
-    <!-- Поле для ввода пароля -->
+    <!-- поле для ввода пароля -->
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="0dp"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Кнопка для подтверждения пароля -->
+    <!-- кнопка для подтверждения пароля -->
     <Button
         android:id="@+id/btnSubmitPassword"
         android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- Поле для отображения содержимого файла -->
+    <!-- поле для отображения содержимого файла -->
     <TextView
         android:id="@+id/tvFileContent"
         android:layout_width="wrap_content"
