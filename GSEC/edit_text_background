@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Фокусированное состояние -->
+    <!-- фокусированное состояние -->
     <item android:state_focused="true">
         <shape android:shape="rectangle">
             <solid android:color="@color/white"/>
@@ -9,7 +9,7 @@
             <padding android:left="10dp" android:top="5dp" android:right="10dp" android:bottom="5dp"/>
         </shape>
     </item>
-    <!-- Нажатое состояние -->
+    <!-- нажатое состояние -->
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <solid android:color="@color/white"/>
@@ -18,7 +18,7 @@
             <padding android:left="10dp" android:top="5dp" android:right="10dp" android:bottom="5dp"/>
         </shape>
     </item>
-    <!-- Обычное состояние -->
+    <!-- обычное состояние -->
     <item>
         <shape android:shape="rectangle">
             <solid android:color="@color/white"/>
