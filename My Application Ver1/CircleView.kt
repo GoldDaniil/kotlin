@@ -28,19 +28,19 @@ class CircleView @JvmOverloads constructor(
     private var innerDiameter = 0
     private var borderWidth = 0
 
-    private var currentTime = 0L // текущее время для анимации
-    private val animationDuration = 3000L // длительность одного оборота в миллисекундах
-    private val iconSize = 50 // размер иконки в пикселях
-    private var centerX = 0f // координата X центра окружности
-    private var centerY = 0f // координата Y центра окружности
-    private var radiusRed = 0f // радиус красной окружности
-    private var radiusWhite = 0f // радиус белой окружности
+    private var currentTime = 0L //текущее время для анимации
+    private val animationDuration = 3000L //длительность одного оборота в миллисекундах
+    private val iconSize = 50 //размер иконки в пикселях
+    private var centerX = 0f //координата X центра окружности
+    private var centerY = 0f //координата Y центра окружности
+    private var radiusRed = 0f //радиус красной окружности
+    private var radiusWhite = 0f //радиус белой окружности
 
     private var helmetIcon: Drawable? = null
 
-    private var greenArcStartAngle = 0f // начальный угол для зеленого сегмента
-    private var greenArcSweepAngle = 0f // длина (угол) зеленого сегмента
-    private var maxGreenArcLength = 240f // максимальная длина (угол) зеленого сегмента
+    private var greenArcStartAngle = 0f //начальный угол для зеленого сегмента
+    private var greenArcSweepAngle = 0f //длина (угол) зеленого сегмента
+    private var maxGreenArcLength = 240f //максимальная длина (угол) зеленого сегмента
 
     init {
         outerPaint.color = ContextCompat.getColor(context, android.R.color.transparent)
