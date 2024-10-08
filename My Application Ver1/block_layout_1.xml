@@ -7,7 +7,7 @@
     android:background="@drawable/background_image_main_bull"
     android:gravity="center">
 
-    <!-- Заголовок -->
+    <!-- заголовок -->
     <TextView
         android:id="@+id/quiz_title"
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         android:textColor="@android:color/white"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Первая кнопка для игры Квиз -->
+    <!-- первая кнопка для игры Квиз -->
     <Button
         android:id="@+id/button_quiz"
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         android:textColor="@android:color/white"
         android:padding="12dp"/>
 
-    <!-- Вторая кнопка для игры Квиз/Фото -->
+    <!-- вторая кнопка для игры Квиз/Фото -->
     <Button
         android:id="@+id/button_quiz_photo"
         android:layout_width="wrap_content"
