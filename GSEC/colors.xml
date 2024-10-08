@@ -17,33 +17,27 @@
     <color name="textColorDark">#FFFFFF</color>
     <color name="primaryColorDark">#3700B3</color>
 
-    <!-- Gradient colors -->
-    <color name="gradient_start">#4A90E2</color> <!-- Light blue -->
-    <color name="gradient_end">#0052D4</color> <!-- Dark blue -->
+    <!-- градиенты -->
+    <color name="gradient_start">#4A90E2</color> <!-- light blue -->
+    <color name="gradient_end">#0052D4</color> <!-- dark blue -->
 
-    <!-- Edit text colors -->
-    <color name="edit_text_background">#FFFFFF</color> <!-- White -->
+    <color name="edit_text_background">#FFFFFF</color> 
 
-    <!-- Button colors -->
-    <color name="button_default">#007BFF</color> <!-- Blue -->
-    <color name="button_pressed">#0056b3</color> <!-- Darker blue -->
+    <color name="button_default">#007BFF</color> <!-- blue -->
+    <color name="button_pressed">#0056b3</color> <!-- darker blue -->
 
     <!-- CAPTCHA colors -->
-    <color name="captcha_background">#F5F5F5</color> <!-- Light gray -->
+    <color name="captcha_background">#F5F5F5</color> <!-- light gray -->
 
-    <!-- Text colors -->
     <color name="red">#FF0000</color>
-
 
     <color name="blue">#0000FF</color>
     <color name="gray">#808080</color>
 
-
-
-    <!-- Цвет для обычного состояния кнопки -->
+    <!-- цвет - обычное состояния кнопки -->
     <color name="button_default_color">#FF6200EE</color>
 
-    <!-- Цвет для нажатого состояния кнопки -->
+    <!-- цвет - нажатое активное состояния кнопки -->
     <color name="button_pressed_color">#FF3700B3</color>
 
 </resources>
