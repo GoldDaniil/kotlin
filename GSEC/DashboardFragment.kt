@@ -18,14 +18,13 @@ class DashboardFragment : Fragment() {
     private lateinit var btnSubmitPassword: Button
     private lateinit var tvFileContent: TextView
 
-    // Правильный пароль
+    // правильный пароль
     private val correctPassword = "5678"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
         etPassword = view.findViewById(R.id.etPassword)
@@ -36,11 +35,11 @@ class DashboardFragment : Fragment() {
             val inputPassword = etPassword.text.toString()
 
             if (inputPassword == correctPassword) {
-                // Если пароль верный, открыть NoteActivity
+                // если пароль верный, открыть NoteActivity
                 val intent = Intent(requireContext(), NoteActivity::class.java)
                 startActivity(intent)
             } else {
-                tvFileContent.text = "Incorrect password"
+                tvFileContent.text = "incorrect password"
             }
         }
 
