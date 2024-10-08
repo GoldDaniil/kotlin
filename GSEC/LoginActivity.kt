@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         loginButton = findViewById(R.id.login_button)
         attemptsTextView = findViewById(R.id.attempts_text_view)
 
-        // cкрыть капчу и количество попыток до первой ошибки
+        //cкрыть капчу и количество попыток до первой ошибки
         captchaTextView.visibility = android.view.View.GONE
         captchaEditText.visibility = android.view.View.GONE
         attemptsTextView.visibility = android.view.View.GONE
@@ -46,13 +46,13 @@ class LoginActivity : AppCompatActivity() {
             if (validateCredentials(login, password)) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-                finish()  // закрытие активности входа после успешного входа
+                finish()  //закрытие активности входа после успешного входа
             } else {
                 if (attemptsLeft > 1) {
                     attemptsLeft--
                     attemptsTextView.text = "Attempts left: $attemptsLeft"
                     attemptsTextView.visibility = android.view.View.VISIBLE
-                    // показать капчу только после первой неудачной попытки
+                    //показать капчу только после первой неудачной попытки
                     if (attemptsLeft < 3) {
                         captchaTextView.visibility = android.view.View.VISIBLE
                         captchaEditText.visibility = android.view.View.VISIBLE
@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     showErrorMessage()
                 } else {
-                    Toast.makeText(this, "Too many failed attempts. Please try again later.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Too many failed attempts! Please try again later!", Toast.LENGTH_LONG).show()
                     loginButton.isEnabled = false
                 }
             }
